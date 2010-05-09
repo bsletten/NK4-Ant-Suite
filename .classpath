@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="urn.uk.org.onegch.netkernel.ciexperiment" path="urn.uk.org.onegch.netkernel.ciexperiment"/>
+	<classpathentry kind="src" output="urn.test.uk.org.onegch.netkernel.ciexperiment" path="urn.test.uk.org.onegch.netkernel.ciexperiment"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/urn.org.netkernel.xml.saxon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/urn.uk.org.onegch.netkernel.layer2"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/NetKernel 4"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
