@@ -5,6 +5,6 @@
   </target>
   
   <target name="test" depends="build">
-    
+    <echo>test</echo>
   </target>
 </project>
