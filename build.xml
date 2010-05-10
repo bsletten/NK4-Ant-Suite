@@ -17,9 +17,6 @@
   <target name="clean">
     <delete>
       <fileset dir="build" />
-      <fileset dir="urn.uk.org.onegch.netkernel.ciexperiment">
-        <include name="**/*.class"/>
-      </fileset>
       <fileset dir="urn.test.uk.org.onegch.netkernel.ciexperiment">
         <include name="**/*.class"/>
       </fileset>
@@ -28,7 +25,6 @@
   
   <target name="build" depends="init">
     <javac classpathref="path" srcdir="testNG-nk4" destdir="build"/>
-    <javac classpathref="path" srcdir="urn.uk.org.onegch.netkernel.ciexperiment" destdir="urn.uk.org.onegch.netkernel.ciexperiment"/>
     <javac classpathref="path" srcdir="urn.test.uk.org.onegch.netkernel.ciexperiment" destdir="urn.test.uk.org.onegch.netkernel.ciexperiment"/>
   </target>
   
