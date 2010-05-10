@@ -20,16 +20,14 @@ import org.netkernel.module.standard.StandardModuleFactory;
 
 import com.ten60.netkernel.cache.se.representation2.ConcurrentCache;
 
-public class NKInstance {
+public class NKRunner {
 
-  private static NKInstance instance= null;
-  
   private static int SYSTEM_RUN_LEVEL_START = 1;
   private ModuleManager mModuleManager;
   private ConcurrentCache mRepresentationCache;
   private INKFRequestContext mContext;
   
-  private NKInstance() {
+  public NKRunner() {
     try {
       // Create a new micro-kernel.
       Kernel kernel = new Kernel();
@@ -96,13 +94,6 @@ public class NKInstance {
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
-  }
-  
-  public static NKInstance getInstance() {
-    if (instance == null) {
-      instance= new NKInstance();
-    }
-    return instance;
   }
   
   public void start() {

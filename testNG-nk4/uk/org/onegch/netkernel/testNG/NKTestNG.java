@@ -12,9 +12,10 @@ public class NKTestNG extends TestNG {
   
   @Override
   public void run() {
-    NKInstance.getInstance().start();
+    NKRunner runner= new NKRunner();
+    runner.start();
     super.run();
-    NKInstance.getInstance().stop();
+    runner.stop();
   }
   
   public static NKTestNG privateMain(String[] argv, ITestListener listener) {
