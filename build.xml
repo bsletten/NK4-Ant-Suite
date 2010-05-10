@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="ciexperiment">
-  <target name="build">
-    
+  <path id="path">
+    <pathelement path="build"/>
+    <fileset dir="lib">
+      <include name="urn.com.ten60.*.jar"/>
+      <include name="testng*.jar"/>
+    </fileset>
+  </path>
+  
+  <target name="clean">
+    <delete>
+      <fileset dir="build"/>
+    </delete>
+  </target>
+  
+  <target name="build" depends="clean">
+    <javac classpathref="path" srcdir="testNG-nk4" destdir="build"/>
   </target>
   
   <target name="test" depends="build">
-    <echo>test</echo>
+    <java classpathref="path" classname="uk.org.onegch.netkernel.testNG.TestRunner"/>
   </target>
 </project>
