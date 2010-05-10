@@ -6,12 +6,17 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/urn.org.netkernel.xml.saxon"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/urn.uk.org.onegch.netkernel.layer2"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/NetKernel 4"/>
 	<classpathentry kind="lib" path="lib/testng-5.11-jdk15.jar" sourcepath="/Users/chrisc/Downloads/testng-5.11/src/main"/>
 	<classpathentry kind="lib" path="lib/httpclient-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/dom4j-2.0.0-ALPHA-2.jar"/>
 	<classpathentry kind="lib" path="lib/jaxen-1.1.2.jar"/>
+	<classpathentry kind="lib" path="lib/urn.com.ten60.core.boot-1.12.22.jar"/>
+	<classpathentry kind="lib" path="lib/urn.com.ten60.core.cache.se-1.2.11.jar"/>
+	<classpathentry kind="lib" path="lib/urn.com.ten60.core.layer0-1.25.57.jar"/>
+	<classpathentry kind="lib" path="lib/urn.com.ten60.core.module.standard-1.16.29.jar"/>
+	<classpathentry kind="lib" path="lib/urn.com.ten60.core.netkernel.api-4.1.5.jar"/>
+	<classpathentry kind="lib" path="lib/urn.com.ten60.core.netkernel.impl-4.9.24.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
