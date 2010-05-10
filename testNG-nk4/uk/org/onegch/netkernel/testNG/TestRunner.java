@@ -37,6 +37,7 @@ import org.netkernel.module.standard.StandardModuleFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.ten60.netkernel.cache.se.representation2.ConcurrentCache;
@@ -129,6 +130,8 @@ public class TestRunner {
     mRepresentationCache.stop();
   }
   
+  @Test
+  @Parameters(value = "identifier")
   public void executeTest(String identifier) {
     this.start();
     try {
@@ -175,19 +178,8 @@ public class TestRunner {
     }
   }
   
-  @Test(description= "urn:test:uk:org:onegch:netkernel:ciexperiment")
-  public void blahTest() throws ClientProtocolException, IOException, DocumentException {
-    executeTest("urn:test:uk:org:onegch:netkernel:ciexperiment");
-  }
-  
-  @Test(description= "urn:test:uk:org:onegch:netkernel:ciexperiment2")
-  public void blah2Test() throws ClientProtocolException, IOException, DocumentException {
-    executeTest("urn:test:uk:org:onegch:netkernel:ciexperiment");
-  }
-  
   public static void main(String[] args) throws Exception {
     TestRunner tr= new TestRunner();
     
-    tr.blahTest();
   }
 }

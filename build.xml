@@ -34,7 +34,7 @@
   
   <target name="test" depends="build">
     <testng classpathref="path" haltonfailure="true">
-      <classfileset dir="build" includes="uk/org/onegch/netkernel/testNG/TestRunner.class" />
+      <xmlfileset file="testng.xml"/>
     </testng>
   </target>
 </project>
