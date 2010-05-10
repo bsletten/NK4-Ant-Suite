@@ -2,12 +2,12 @@
 <module version="2.0">
   <meta>
     <identity>
-      <uri>urn:uk:org:onegch:netkernel:ciexperiment</uri>
+      <uri>urn:test:uk:org:onegch:netkernel:ciexperiment</uri>
       <version>1.0.0</version>
     </identity>
     <info>
-      <name>CI Experiment</name>
-      <description>Continuous Integration Experiment</description>
+      <name>Test / CI Experiment</name>
+      <description>Tests for Continuous Integration Experiment</description>
     </info>
   </meta>
 
@@ -16,7 +16,15 @@
   </system>
 
   <!-- Space for handing web requests -->
-  <rootspace name="CI Experiment" uri="urn:uk:org:onegch:netkernel:ciexperiment" public="true">
-    
+  <rootspace name="CI Experiment Test" uri="urn:test:uk:org:onegch:netkernel:ciexperiment" public="true">
+    <fileset>
+      <glob>etc/system/Tests.xml</glob>
+    </fileset>
+    <fileset>
+      <glob>test/*</glob>
+    </fileset>
+    <import>
+      <uri>urn:org:netkernel:ext:layer1</uri>
+    </import>
   </rootspace>
 </module>

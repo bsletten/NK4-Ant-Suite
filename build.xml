@@ -3,9 +3,7 @@
   <path id="path">
     <pathelement path="build"/>
     <fileset dir="lib">
-      <include name="urn.com.ten60.*.jar"/>
-      <include name="testng*.jar"/>
-      <include name="xerces*.jar"/>
+      <include name="*.jar"/>
     </fileset>
   </path>
   
