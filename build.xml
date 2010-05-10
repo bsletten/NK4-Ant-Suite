@@ -16,7 +16,7 @@
   
   <target name="clean">
     <delete>
-      <fileset dir="build"/>
+      <fileset dir="build" />
       <fileset dir="urn.uk.org.onegch.netkernel.ciexperiment">
         <include name="**/*.class"/>
       </fileset>
@@ -32,9 +32,16 @@
     <javac classpathref="path" srcdir="urn.test.uk.org.onegch.netkernel.ciexperiment" destdir="urn.test.uk.org.onegch.netkernel.ciexperiment"/>
   </target>
   
-  <target name="test" depends="build">
+  <target name="generate-tests" depends="init">
+    <xslt in="urn.test.uk.org.onegch.netkernel.ciexperiment/etc/system/Tests.xml"
+          out="testng.xml"
+          style="testNG-nk4/uk/org/onegch/netkernel/testNG/generate-suite.xsl"/>
+  </target>
+  
+  <target name="test" depends="build,generate-tests">
     <testng classpathref="path"
-            haltonfailure="true">
+            haltonfailure="true"
+            suiterunnerclass="uk.org.onegch.netkernel.testNG.NKTestNG">
       <xmlfileset file="testng.xml"/>
     </testng>
   </target>

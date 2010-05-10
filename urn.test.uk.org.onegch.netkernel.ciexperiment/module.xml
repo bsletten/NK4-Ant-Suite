@@ -23,6 +23,9 @@
     <fileset>
       <glob>test/*</glob>
     </fileset>
+    <fileset>
+      <glob>test2/*</glob>
+    </fileset>
     <import>
       <uri>urn:org:netkernel:ext:layer1</uri>
     </import>
