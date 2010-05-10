@@ -20,6 +20,8 @@ import org.netkernel.layer0.util.Layer0Factory;
 import org.netkernel.module.standard.StandardModuleFactory;
 import org.testng.Assert;
 import org.testng.TestNG;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.ten60.netkernel.cache.se.representation2.ConcurrentCache;
@@ -95,13 +97,35 @@ public class TestRunner {
     }
   }
   
+  @BeforeClass(alwaysRun= true)
   public void start() {
+    System.out.println("START");
+    System.out.println("START");
+    System.out.println("START");
+    System.out.println("START");
+    
     mModuleManager.setRunLevel(SYSTEM_RUN_LEVEL_START);
+    
+    System.out.println("FINISHED START");
+    System.out.println("FINISHED START");
+    System.out.println("FINISHED START");
+    System.out.println("FINISHED START");
   }
   
+  @AfterClass(alwaysRun= true)
   public void stop() {
+    System.out.println("STOP");
+    System.out.println("STOP");
+    System.out.println("STOP");
+    System.out.println("STOP");
+    
     mModuleManager.stop();
     mRepresentationCache.stop();
+    
+    System.out.println("FINISHED STOP");
+    System.out.println("FINISHED STOP");
+    System.out.println("FINISHED STOP");
+    System.out.println("FINISHED STOP");
   }
   
   @Test()
@@ -109,24 +133,9 @@ public class TestRunner {
     try {
       Thread.sleep(5000);
     } catch (InterruptedException e) {
+      stop();
       Assert.fail("Interrupted", e);
     }
     Assert.assertEquals(1, 2, "1!=2 :-)");
-  }
-  
-  /**
-   * @param args
-   * @throws Exception 
-   */
-  public static void main(String[] args) throws Exception {
-    TestRunner runner= new TestRunner();
-    
-    runner.start();
-    
-    TestNG testng= new TestNG();
-    testng.setTestClasses(new Class[] {TestRunner.class});
-    testng.run();
-    
-    runner.stop();
   }
 }
