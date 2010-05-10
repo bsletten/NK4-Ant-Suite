@@ -9,6 +9,9 @@
     </fileset>
   </path>
   
+  <taskdef name="testng" classpath="lib/testng-5.11-jdk15.jar"
+           classname="org.testng.TestNGAntTask" />
+  
   <target name="init">
     <mkdir dir="build"/>
   </target>
@@ -24,6 +27,8 @@
   </target>
   
   <target name="test" depends="build">
-    <java  classpathref="path" classname="uk.org.onegch.netkernel.testNG.TestRunner"/>
+    <testng classpathref="path" haltonfailure="true">
+      <classfileset dir="build" includes="uk/org/onegch/netkernel/testNG/TestRunner.class" />
+    </testng>
   </target>
 </project>
