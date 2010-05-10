@@ -3,21 +3,18 @@ package uk.org.onegch.netkernel.testNG;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.net.URI;
 import java.util.List;
 
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.dom4j.Node;
@@ -36,7 +33,9 @@ import org.netkernel.layer0.util.Layer0Factory;
 import org.netkernel.module.standard.StandardModuleFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -125,14 +124,15 @@ public class TestRunner {
   public void stop() {
     try {
       Thread.sleep(500);
+      mModuleManager.stop();
+      mRepresentationCache.stop();
+      Thread.sleep(2000);
     } catch (InterruptedException e) {}
-    mModuleManager.stop();
-    mRepresentationCache.stop();
   }
   
   @Test
-  @Parameters(value = "identifier")
-  public void executeTest(String identifier) {
+  @Parameters(value = {"identifier", "name"})
+  public void executeTest(String identifier, String name) {
     this.start();
     try {
       HttpClient httpclient= new DefaultHttpClient();
@@ -163,10 +163,11 @@ public class TestRunner {
         List<? extends Node> results = testsXpath.selectNodes(doc);
         for (Node node : results) {
           if (node instanceof Element) {
-            String name= ((Element) node).attributeValue("name");
+            String aName= ((Element) node).attributeValue("name");
             String testStatus= ((Element) node).attributeValue("testStatus");
-            
-            Assert.assertTrue(testStatus.equals("success"), space + " (" + version + ") [" + uri + "] " + name);
+            if (aName.equals(name)) {
+              Assert.assertTrue(testStatus.equals("success"), space + " (" + version + ") [" + uri + "] " + name);
+            }
           }
         }
       } catch (Exception e) {
@@ -180,6 +181,6 @@ public class TestRunner {
   
   public static void main(String[] args) throws Exception {
     TestRunner tr= new TestRunner();
-    
+    tr.start();
   }
 }

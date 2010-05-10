@@ -33,7 +33,8 @@
   </target>
   
   <target name="test" depends="build">
-    <testng classpathref="path" haltonfailure="true">
+    <testng classpathref="path"
+            haltonfailure="true">
       <xmlfileset file="testng.xml"/>
     </testng>
   </target>
