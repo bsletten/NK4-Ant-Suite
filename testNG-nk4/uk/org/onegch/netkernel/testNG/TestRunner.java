@@ -3,11 +3,27 @@ package uk.org.onegch.netkernel.testNG;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.URI;
+import java.util.List;
 
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.Node;
+import org.dom4j.Text;
+import org.dom4j.XPath;
+import org.dom4j.io.SAXReader;
 import org.netkernel.container.IKernelListener;
 import org.netkernel.container.ILogger;
 import org.netkernel.container.impl.Kernel;
@@ -19,7 +35,6 @@ import org.netkernel.layer0.tools.ExtraMimeTypes;
 import org.netkernel.layer0.util.Layer0Factory;
 import org.netkernel.module.standard.StandardModuleFactory;
 import org.testng.Assert;
-import org.testng.TestNG;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -97,45 +112,82 @@ public class TestRunner {
     }
   }
   
-  @BeforeClass(alwaysRun= true)
+  @BeforeClass()
   public void start() {
-    System.out.println("START");
-    System.out.println("START");
-    System.out.println("START");
-    System.out.println("START");
-    
     mModuleManager.setRunLevel(SYSTEM_RUN_LEVEL_START);
-    
-    System.out.println("FINISHED START");
-    System.out.println("FINISHED START");
-    System.out.println("FINISHED START");
-    System.out.println("FINISHED START");
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {}
   }
   
-  @AfterClass(alwaysRun= true)
+  @AfterClass()
   public void stop() {
-    System.out.println("STOP");
-    System.out.println("STOP");
-    System.out.println("STOP");
-    System.out.println("STOP");
-    
+    try {
+      Thread.sleep(500);
+    } catch (InterruptedException e) {}
     mModuleManager.stop();
     mRepresentationCache.stop();
-    
-    System.out.println("FINISHED STOP");
-    System.out.println("FINISHED STOP");
-    System.out.println("FINISHED STOP");
-    System.out.println("FINISHED STOP");
   }
   
-  @Test()
-  public void blahTest() {
+  public void executeTest(String identifier) {
+    this.start();
     try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      stop();
-      Assert.fail("Interrupted", e);
+      HttpClient httpclient= new DefaultHttpClient();
+      
+      try {
+        HttpGet httpget = new HttpGet("http://127.0.0.1:1060/test/exec/xml/" + identifier); 
+        
+        // Create a response handler
+        ResponseHandler<String> responseHandler = new BasicResponseHandler();
+        String responseBody = httpclient.execute(httpget, responseHandler);
+        
+        SAXReader saxReader= new SAXReader();
+        Document doc= saxReader.read(new StringReader(responseBody));
+        
+        XPath spaceXpath = DocumentHelper.createXPath("/testlist/results/space/text()");
+        Node spaceNode= spaceXpath.selectSingleNode(doc);
+        String space= ((Text) spaceNode).getText();
+        
+        XPath versionXpath = DocumentHelper.createXPath("/testlist/results/version/text()");
+        Node versionNode= versionXpath.selectSingleNode(doc);
+        String version= ((Text) versionNode).getText();
+        
+        XPath uriXpath = DocumentHelper.createXPath("/testlist/results/uri/text()");
+        Node uriNode= uriXpath.selectSingleNode(doc);
+        String uri= ((Text) uriNode).getText();
+        
+        XPath testsXpath = DocumentHelper.createXPath("//test");
+        List<? extends Node> results = testsXpath.selectNodes(doc);
+        for (Node node : results) {
+          if (node instanceof Element) {
+            String name= ((Element) node).attributeValue("name");
+            String testStatus= ((Element) node).attributeValue("testStatus");
+            
+            Assert.assertTrue(testStatus.equals("success"), space + " (" + version + ") [" + uri + "] " + name);
+          }
+        }
+      } catch (Exception e) {
+        Assert.fail("Unxpected exception running tests for " + identifier, e);
+        httpclient.getConnectionManager().shutdown();
+      }
+    } catch (AssertionError e) {
+      throw e;
     }
-    Assert.assertEquals(1, 2, "1!=2 :-)");
+  }
+  
+  @Test(description= "urn:test:uk:org:onegch:netkernel:ciexperiment")
+  public void blahTest() throws ClientProtocolException, IOException, DocumentException {
+    executeTest("urn:test:uk:org:onegch:netkernel:ciexperiment");
+  }
+  
+  @Test(description= "urn:test:uk:org:onegch:netkernel:ciexperiment2")
+  public void blah2Test() throws ClientProtocolException, IOException, DocumentException {
+    executeTest("urn:test:uk:org:onegch:netkernel:ciexperiment");
+  }
+  
+  public static void main(String[] args) throws Exception {
+    TestRunner tr= new TestRunner();
+    
+    tr.blahTest();
   }
 }

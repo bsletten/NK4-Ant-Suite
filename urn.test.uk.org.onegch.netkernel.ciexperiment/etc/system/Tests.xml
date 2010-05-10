@@ -1,0 +1,9 @@
+<tests>
+  <test>
+    <id>urn:test:uk:org:onegch:netkernel:ciexperiment</id>
+    <name>CIExperiment Tests</name>
+    <desc>Tests of CIExperiment</desc>
+    <uri>res:/test/testlist.xml</uri>
+    <icon></icon>
+  </test>
+</tests>

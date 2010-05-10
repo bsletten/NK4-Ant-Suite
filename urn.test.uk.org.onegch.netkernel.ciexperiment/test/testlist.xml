@@ -1,0 +1,11 @@
+<testlist>
+  <test name="Test 1">
+    <request>
+      <identifier>active:java</identifier>
+      <argument name="class">uk.org.onegch.netkernel.ciexperiment.test.Test1</argument>
+    </request>
+    <assert>
+      <true/>
+    </assert>
+  </test>
+</testlist>
