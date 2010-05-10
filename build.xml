@@ -8,13 +8,17 @@
     </fileset>
   </path>
   
+  <target name="init">
+    <mkdir dir="build"/>
+  </target>
+  
   <target name="clean">
     <delete>
       <fileset dir="build"/>
     </delete>
   </target>
   
-  <target name="build" depends="clean">
+  <target name="build" depends="init">
     <javac classpathref="path" srcdir="testNG-nk4" destdir="build"/>
   </target>
   
