@@ -8,4 +8,13 @@
       <true/>
     </assert>
   </test>
+  <test name="Test 2">
+    <request>
+      <identifier>active:java</identifier>
+      <argument name="class">uk.org.onegch.netkernel.ciexperiment.test.Test2</argument>
+    </request>
+    <assert>
+      <false/>
+    </assert>
+  </test>
 </testlist>
