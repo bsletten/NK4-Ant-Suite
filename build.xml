@@ -5,6 +5,7 @@
     <fileset dir="lib">
       <include name="urn.com.ten60.*.jar"/>
       <include name="testng*.jar"/>
+      <include name="xerces*.jar"/>
     </fileset>
   </path>
   
@@ -23,6 +24,6 @@
   </target>
   
   <target name="test" depends="build">
-    <java classpathref="path" classname="uk.org.onegch.netkernel.testNG.TestRunner"/>
+    <java  classpathref="path" classname="uk.org.onegch.netkernel.testNG.TestRunner"/>
   </target>
 </project>
