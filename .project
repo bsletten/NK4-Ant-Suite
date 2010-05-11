@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>testNG-nk4-0_1.zip</name>
+			<type>2</type>
+			<locationURI>zip:/?file:/Users/chrisc/Development/DeltaXML2/TestNG-nk4/testNG-nk4-0_1.zip</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

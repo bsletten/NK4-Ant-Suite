@@ -5,3 +5,11 @@ syntax: regexp
 ^build$
 syntax: regexp
 ^log$
+syntax: regexp
+^testNG-nk4-0_1$
+syntax: regexp
+^testNG-nk4-0_1$
+syntax: regexp
+^testNG-nk4\.jar$
+syntax: regexp
+^testNG-nk4-0_1\.zip$
