@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry excluding="etc/|test/|test2/" kind="src" output="urn.test.uk.org.onegch.netkernel.ciexperiment" path="urn.test.uk.org.onegch.netkernel.ciexperiment"/>
-	<classpathentry excluding="etc/" kind="src" output="testNG-nk4" path="testNG-nk4"/>
+	<classpathentry excluding="etc/" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/urn.org.netkernel.xml.saxon"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/urn.uk.org.onegch.netkernel.layer2"/>
