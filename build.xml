@@ -1,52 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ciexperiment">
+<project name="testNG-nk4">
+  <property name="version" value="0_1"/>
+  
   <path id="path">
-    <pathelement path="build"/>
+    <pathelement path="build/"/>
     <fileset dir="lib">
       <include name="*.jar"/>
     </fileset>
   </path>
   
-  <taskdef name="testng" classpath="lib/testng-5.11-jdk15.jar"
-           classname="org.testng.TestNGAntTask" />
-  
   <target name="init">
     <mkdir dir="build"/>
-    <mkdir dir="log"/>
   </target>
   
   <target name="clean">
     <deltree dir="build"/>
-    <deltree dir="log"/>
-    <delete>
-      <fileset dir="urn.test.uk.org.onegch.netkernel.ciexperiment">
-        <include name="**/*.class"/>
-      </fileset>
-    </delete>
   </target>
   
   <target name="build" depends="init">
-    <javac classpathref="path" srcdir="testNG-nk4" destdir="build"/>
-    <javac classpathref="path" srcdir="urn.test.uk.org.onegch.netkernel.ciexperiment" destdir="urn.test.uk.org.onegch.netkernel.ciexperiment"/>
-    <copy todir="build">
-      <fileset dir="testNG-nk4">
-        <include name="etc/**/*"/>
-      </fileset>
-    </copy>
+    <javac classpathref="path" srcdir="src" destdir="build"/>
   </target>
   
-  <target name="generate-tests" depends="init">
-    <xslt in="urn.test.uk.org.onegch.netkernel.ciexperiment/etc/system/Tests.xml"
-          out="testng.xml"
-          style="testNG-nk4/uk/org/onegch/netkernel/testNG/generate-suite.xsl"/>
-  </target>
-  
-  <target name="test" depends="build,generate-tests">
-    <testng classpathref="path"
-            haltonfailure="true"
-            suiterunnerclass="uk.org.onegch.netkernel.testNG.NKTestNG">
-      <xmlfileset file="testng.xml"/>
-      <sysproperty key="uk.org.onegch.netkernel.testNG.module" value="${basedir}/urn.test.uk.org.onegch.netkernel.ciexperiment/"/>
-    </testng>
+  <target name="package" depends="build">
+    <zip destfile="testNG-nk4-${version}.zip">
+      <zipfileset dir="build" prefix="testNG-nk4-${version}/"/>
+      <zipfileset dir="lib" prefix="testNG-nk4-${version}/lib"/>
+      <zipfileset dir="etc" prefix="testNG-nk4-${version}/etc"/>
+      <zipfileset dir="src" prefix="testNG-nk4-${version}/src"/>
+    </zip>
   </target>
 </project>
