@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<logs>
+<log>
+<id>NetKernel</id>
+<name>NetKernel System Log</name>
+<levels>
+<severe>true</severe>
+<warning>true</warning>
+<info>true</info>
+<fine>false</fine>
+<finer>false</finer>
+<debug>false</debug>
+<cache>false</cache>
+</levels>
+</log>
+<log>
+<id>org.netkernel.mod.cron</id>
+<name>Cron Log</name>
+<levels>
+<severe>true</severe>
+<warning>true</warning>
+<info>true</info>
+<fine>false</fine>
+<finer>false</finer>
+<debug>false</debug>
+<cache>false</cache>
+</levels>
+</log>
+</logs>

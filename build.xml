@@ -12,11 +12,13 @@
   
   <target name="init">
     <mkdir dir="build"/>
+    <mkdir dir="log"/>
   </target>
   
   <target name="clean">
+    <deltree dir="build"/>
+    <deltree dir="log"/>
     <delete>
-      <fileset dir="build" />
       <fileset dir="urn.test.uk.org.onegch.netkernel.ciexperiment">
         <include name="**/*.class"/>
       </fileset>
@@ -26,6 +28,11 @@
   <target name="build" depends="init">
     <javac classpathref="path" srcdir="testNG-nk4" destdir="build"/>
     <javac classpathref="path" srcdir="urn.test.uk.org.onegch.netkernel.ciexperiment" destdir="urn.test.uk.org.onegch.netkernel.ciexperiment"/>
+    <copy todir="build">
+      <fileset dir="testNG-nk4">
+        <include name="etc/**/*"/>
+      </fileset>
+    </copy>
   </target>
   
   <target name="generate-tests" depends="init">

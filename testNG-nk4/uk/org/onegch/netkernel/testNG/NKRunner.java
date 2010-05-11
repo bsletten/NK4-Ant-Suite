@@ -14,6 +14,8 @@ import org.netkernel.layer0.boot.IModuleFactory;
 import org.netkernel.layer0.boot.ModuleManager;
 import org.netkernel.layer0.logging.LogManager;
 import org.netkernel.layer0.nkf.INKFRequestContext;
+import org.netkernel.layer0.representation.IHDSNode;
+import org.netkernel.layer0.representation.impl.HDSBuilder;
 import org.netkernel.layer0.tools.ExtraMimeTypes;
 import org.netkernel.layer0.util.Layer0Factory;
 import org.netkernel.module.standard.StandardModuleFactory;
@@ -34,9 +36,11 @@ public class NKRunner {
   
       // NetKernel adds support for missing MIME types to the JDK.
       ExtraMimeTypes.getInstance();
-  
+      
       // NetKernel requires a logger
-      ILogger logger = new LogManager(null).getKernelLogger();
+      LogManager lm= new LogManager(new File("").getCanonicalPath());
+      
+      ILogger logger = lm.getKernelLogger();
       
       TestRunnerConfiguration config= new TestRunnerConfiguration();
       config.setString("netkernel.scheduler.threadcount", "4");
