@@ -27,10 +27,11 @@ public class NKRunner {
   private static int SYSTEM_RUN_LEVEL_START = 1;
   private ModuleManager mModuleManager;
   private ConcurrentCache mRepresentationCache;
-  private INKFRequestContext mContext;
   
   public NKRunner() {
     try {
+      String module= System.getProperty("uk.org.onegch.netkernel.testNG.module");
+      
       // Create a new micro-kernel.
       Kernel kernel = new Kernel();
   
@@ -95,6 +96,8 @@ public class NKRunner {
           mModuleManager.addModule(moduleURI, SYSTEM_RUN_LEVEL_START);
         }
       }
+      
+      mModuleManager.addModule(new File(module).toURI(), SYSTEM_RUN_LEVEL_START);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
