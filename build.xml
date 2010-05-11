@@ -46,6 +46,7 @@
             haltonfailure="true"
             suiterunnerclass="uk.org.onegch.netkernel.testNG.NKTestNG">
       <xmlfileset file="testng.xml"/>
+      <sysproperty key="uk.org.onegch.netkernel.testNG.module" value="${basedir}/urn.test.uk.org.onegch.netkernel.ciexperiment/"/>
     </testng>
   </target>
 </project>
