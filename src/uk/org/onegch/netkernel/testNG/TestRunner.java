@@ -26,8 +26,10 @@ public class TestRunner {
     try {
       HttpClient httpclient= new DefaultHttpClient();
       
+      String backendPort= System.getProperty("netkernel.http.backend.port", "1060");
+      
       try {
-        HttpGet httpget = new HttpGet("http://127.0.0.1:1060/test/exec/xml/" + identifier); 
+        HttpGet httpget = new HttpGet("http://127.0.0.1:" + backendPort + "/test/exec/xml/" + identifier); 
         
         // Create a response handler
         ResponseHandler<String> responseHandler = new BasicResponseHandler();

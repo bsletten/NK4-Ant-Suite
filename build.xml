@@ -38,9 +38,7 @@
     
     <zip destfile="testNG-nk4-${version}.zip">
       <zipfileset file="testNG-nk4.jar" prefix="testNG-nk4-${version}/"/>
-      <zipfileset dir="lib" prefix="testNG-nk4-${version}/lib">
-        <exclude name="urn.org.netkernel*.jar"/>
-      </zipfileset>
+      <zipfileset dir="lib" prefix="testNG-nk4-${version}/lib"/>
       <zipfileset file="src/uk/org/onegch/netkernel/testNG/generate-suite.xsl" prefix="testNG-nk4-${version}/"/>
     </zip>
   </target>
