@@ -14,8 +14,13 @@ public class NKTestNG extends TestNG {
   public void run() {
     NKRunner runner= new NKRunner();
     runner.start();
-    super.run();
-    runner.stop();
+    try {
+      super.run();
+    } catch (RuntimeException t) {
+      throw t;
+    } finally {
+      runner.stop();
+    }
   }
   
   public static NKTestNG privateMain(String[] argv, ITestListener listener) {
