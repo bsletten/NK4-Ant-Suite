@@ -21,7 +21,8 @@
     <javac classpathref="path"
            srcdir="src"
            destdir="build"
-           debug="true"/>
+           debug="true"
+           target="1.5"/>
   </target>
   
   <target name="package" depends="build">
