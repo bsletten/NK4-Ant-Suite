@@ -30,6 +30,8 @@ public class NKRunner {
   
   public NKRunner() {
     try {
+      org.ten60.netkernel.protocolhandler.nk.Handler.init(this.getClass().getClassLoader());
+      
       String basedir= System.getProperty("uk.org.onegch.netkernel.testNG.modules.basedir", "");
       String modules= System.getProperty("uk.org.onegch.netkernel.testNG.modules");
       
