@@ -13,3 +13,11 @@ syntax: regexp
 ^testNG-nk4\.jar$
 syntax: regexp
 ^testNG-nk4-0_1\.zip$
+syntax: regexp
+^ee$
+syntax: regexp
+^pds$
+syntax: regexp
+^etc/license$
+syntax: regexp
+^etc/cron\.xml$

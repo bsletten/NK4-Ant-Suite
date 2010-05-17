@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="testNG-nk4" default="package">
+  <property name="nkee-jar" value="${user.home}/Library/NetKernel/1060-NetKernel-EE-4.1.0-preview-5.0.jar"/>
   <property name="version" value="0_1"/>
   
   <path id="path">
     <pathelement path="build/"/>
+    <fileset dir="ee/lib">
+      <include name="*.jar"/>
+    </fileset>
     <fileset dir="lib">
       <include name="*.jar"/>
     </fileset>
@@ -19,9 +23,31 @@
     <delete dir="${basedir}">
       <include name="testNG-nk4*.zip"/>
     </delete>
+    <delete dir="ee"/>
+    <delete file="testNG-nk4.jar"/>
   </target>
   
-  <target name="build" depends="init">
+  <target name="build-from-ee">
+    <unjar src="${nkee-jar}" dest="ee">
+      <patternset>
+        <include name="lib/*.jar"/>
+        <include name="modules/*.sjar"/>
+        <include name="modules/*.jar"/>
+        <exclude name="modules/*.apposite.*"/>
+        <exclude name="modules/*arp*"/>
+        <exclude name="modules/*deadlock*"/>
+        <exclude name="modules/*installer*"/>
+        <exclude name="modules/*frontend*"/>
+      </patternset>
+    </unjar>
+    <unjar src="${nkee-jar}" dest="${basedir}">
+      <patternset>
+        <include name="etc/license/*"/>
+      </patternset>
+    </unjar>
+  </target>
+  
+  <target name="build" depends="init,build-from-ee">
     <javac classpathref="path"
            srcdir="src"
            destdir="build"
@@ -32,12 +58,13 @@
   <target name="package" depends="build">
     <jar destfile="testNG-nk4.jar">
       <zipfileset dir="build" prefix=""/>
-      <zipfileset dir="etc" prefix="etc"/>
       <zipfileset dir="src" prefix="src"/>
       <zipfileset file="generate-suite.xsl" prefix=""/>
-      <zipfileset file="src/modules.conf" prefix=""/>
-      <zipfileset dir="lib" prefix="lib">
-        <include name="urn.org.netkernel*.jar"/>
+      <zipfileset dir="ee/modules" prefix="modules"/>
+      <zipfileset dir="modules" prefix="modules"/>
+      <zipfileset dir="etc" prefix="etc">
+        <include name="**/KernelLogConfig.xml"/>
+        <include name="**/logLevels.xml"/>
       </zipfileset>
     </jar>
     
