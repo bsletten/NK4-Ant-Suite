@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="testNG-nk4" default="package">
   <property name="nkee-jar" value="${user.home}/Library/NetKernel/1060-NetKernel-EE-4.1.0-preview-5.0.jar"/>
-  <property name="version" value="0_1"/>
+  <property name="version" value="0_2"/>
   
   <path id="path">
     <pathelement path="build/"/>
@@ -38,6 +38,7 @@
         <exclude name="modules/*deadlock*"/>
         <exclude name="modules/*installer*"/>
         <exclude name="modules/*frontend*"/>
+        <exclude name="modules/*layer1*"/>
       </patternset>
     </unjar>
     <unjar src="${nkee-jar}" dest="${basedir}">
@@ -71,6 +72,10 @@
     <zip destfile="testNG-nk4-${version}.zip">
       <zipfileset file="testNG-nk4.jar" prefix="testNG-nk4-${version}/"/>
       <zipfileset dir="lib" prefix="testNG-nk4-${version}/lib"/>
+      <zipfileset dir="etc" prefix="testNG-nk4-${version}/etc"/>
+      <zipfileset dir="modules" prefix="testNG-nk4-${version}/modules"/>
+      <zipfileset dir="ee/lib" prefix="testNG-nk4-${version}/ee/lib"/>
+      <zipfileset dir="ee/modules" prefix="testNG-nk4-${version}/ee/modules"/>
       <zipfileset file="generate-suite.xsl" prefix="testNG-nk4-${version}/"/>
     </zip>
   </target>
