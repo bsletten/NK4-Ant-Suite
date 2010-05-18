@@ -211,9 +211,6 @@ public class NKBoot {
       dest.deleteOnExit();
     }
 
-    // TODO: need to only copy if dest doesn't exist or is stale
-    System.out.println("Expanding " + aName); // + " to " +
-                                              // dest.getAbsolutePath());
     FileOutputStream fos = new FileOutputStream(dest);
     pipe(aIs, fos);
     return dest;
