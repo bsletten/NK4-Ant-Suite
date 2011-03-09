@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jaxen-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpcore-4.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpclient-4.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/dom4j-2.0.0-ALPHA-2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/testng-5.11-jdk15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

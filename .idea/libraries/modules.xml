@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="modules">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/modules/layer1-2010-05-18-tab.jar!/" />
+      <root url="jar://$PROJECT_DIR$/modules/onegch.tablenk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/modules/onegch.layer2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/modules/onegch.evalnk.jar!/" />
+      <root url="jar://$PROJECT_DIR$/modules/urn.org.netkernel.xml.saxon-1.3.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
