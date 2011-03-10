@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="testNG-nk4" default="package">
-  <property name="nkee-jar" value="${user.home}/Library/NetKernel/1060-NetKernel-EE-4.1.0-preview-5.0.jar"/>
-  <property name="version" value="0_2"/>
+  <property name="nk-distribution-jar" value="${user.home}/Library/NetKernel/1060-NetKernel-SE-4.1.1.jar"/>
+  <property name="version" value="0_3"/>
   
   <path id="path">
     <pathelement path="build/"/>
-    <fileset dir="ee/lib">
+    <fileset dir="nk-distribution/lib">
       <include name="*.jar"/>
     </fileset>
     <fileset dir="lib">
@@ -23,12 +23,12 @@
     <delete dir="${basedir}">
       <include name="testNG-nk4*.zip"/>
     </delete>
-    <delete dir="ee"/>
+    <delete dir="nk-distribution"/>
     <delete file="testNG-nk4.jar"/>
   </target>
   
-  <target name="build-from-ee">
-    <unjar src="${nkee-jar}" dest="ee">
+  <target name="build-from-distribution">
+    <unjar src="${nk-distribution-jar}" dest="nk-distribution">
       <patternset>
         <include name="lib/*.jar"/>
         <include name="modules/*.sjar"/>
@@ -38,17 +38,16 @@
         <exclude name="modules/*deadlock*"/>
         <exclude name="modules/*installer*"/>
         <exclude name="modules/*frontend*"/>
-        <exclude name="modules/*layer1*"/>
       </patternset>
     </unjar>
-    <unjar src="${nkee-jar}" dest="${basedir}">
+    <unjar src="${nk-distribution-jar}" dest="${basedir}">
       <patternset>
         <include name="etc/license/*"/>
       </patternset>
     </unjar>
   </target>
   
-  <target name="build" depends="init,build-from-ee">
+  <target name="build" depends="init,build-from-distribution">
     <javac classpathref="path"
            srcdir="src"
            destdir="build"
@@ -59,9 +58,9 @@
   <target name="package" depends="build">
     <jar destfile="testNG-nk4.jar">
       <zipfileset dir="build" prefix=""/>
-      <zipfileset dir="src" prefix="src"/>
+      <zipfileset dir="src" prefix="src" excludes="build.xml" />
       <zipfileset file="generate-suite.xsl" prefix=""/>
-      <zipfileset dir="ee/modules" prefix="modules"/>
+      <zipfileset dir="nk-distribution/modules" prefix="modules"/>
       <zipfileset dir="modules" prefix="modules"/>
       <zipfileset dir="etc" prefix="etc">
         <include name="**/KernelLogConfig.xml"/>
@@ -70,12 +69,14 @@
     </jar>
     
     <zip destfile="testNG-nk4-${version}.zip">
+      <zipfileset dir="src" prefix="testNG-nk4-${version}/" includes="build.xml" />
+      <zipfileset dir="test" prefix="testNG-nk4-${version}/test" />
       <zipfileset file="testNG-nk4.jar" prefix="testNG-nk4-${version}/"/>
       <zipfileset dir="lib" prefix="testNG-nk4-${version}/lib"/>
       <zipfileset dir="etc" prefix="testNG-nk4-${version}/etc"/>
       <zipfileset dir="modules" prefix="testNG-nk4-${version}/modules"/>
-      <zipfileset dir="ee/lib" prefix="testNG-nk4-${version}/ee/lib"/>
-      <zipfileset dir="ee/modules" prefix="testNG-nk4-${version}/ee/modules"/>
+      <zipfileset dir="nk-distribution/lib" prefix="testNG-nk4-${version}/nk-distribution/lib"/>
+      <zipfileset dir="nk-distribution/modules" prefix="testNG-nk4-${version}/nk-distribution/modules"/>
       <zipfileset file="generate-suite.xsl" prefix="testNG-nk4-${version}/"/>
     </zip>
   </target>

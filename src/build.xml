@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="testNG-nk4.self-test" default="self-test">
+  <taskdef name="testng"
+           classpath="lib/testng-5.11-jdk15.jar"
+           classname="org.testng.TestNGAntTask" />
+
+  <path id="run.path">
+    <fileset file="testNG-nk4.jar"/>
+    <fileset file="nk-distribution/lib/*.jar"/>
+    <fileset dir="lib">
+      <include name="http*.jar"/>
+      <include name="commons*.jar"/>
+      <include name="dom4j*.jar"/>
+      <include name="jaxen*.jar"/>
+      <include name="testng*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="generate-tests">
+    <xslt in="test/urn.test.uk.org.onegch.netkernel.test/etc/system/Tests.xml"
+          out="testng.xml"
+          style="generate-suite.xsl"/>
+  </target>
+
+  <target name="self-test" depends="generate-tests">
+     <delete dir="log"/>
+      <mkdir dir="log"/>
+      <testng classpathref="run.path"
+              haltonfailure="true"
+              suiterunnerclass="uk.org.onegch.netkernel.testNG.NKTestNG">
+        <xmlfileset file="testng.xml"/>
+        <sysproperty key="java.protocol.handler.pkgs" value="org.ten60.netkernel.protocolhandler"/>
+        <sysproperty key="uk.org.onegch.netkernel.testNG.modules.basedir" value="${basedir}/"/>
+        <sysproperty key="uk.org.onegch.netkernel.testNG.modules" value="test/urn.test.uk.org.onegch.netkernel.test"/>
+        <sysproperty key="netkernel.http.backend.port" value="1068"/>
+      </testng>
+  </target>
+</project>

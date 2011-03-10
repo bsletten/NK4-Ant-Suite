@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<license-file>
+   <repository>
+      <uuid>49cbfae2-602b-11df-950b-5254c44711b8</uuid>
+      <url>https://apposite.1060research.com/repo/</url>
+      <publickey>-----BEGIN CERTIFICATE-----
+MIIDgjCCAmqgAwIBAgIESblwATANBgkqhkiG9w0BAQUFADCBgjELMAkGA1UEBhMCVUsxEDAOBgNV
+BAgTB0JyaXN0b2wxGTAXBgNVBAcTEENoaXBwaW5nIFNvZGJ1cnkxFjAUBgNVBAoTDTEwNjAgUmVz
+ZWFyY2gxFjAUBgNVBAsTDTEwNjAgUmVzZWFyY2gxFjAUBgNVBAMTDVBldGVyIFJvZGdlcnMwHhcN
+MDkwMzEyMjAyNjQxWhcNMTkwMzEwMjAyNjQxWjCBgjELMAkGA1UEBhMCVUsxEDAOBgNVBAgTB0Jy
+aXN0b2wxGTAXBgNVBAcTEENoaXBwaW5nIFNvZGJ1cnkxFjAUBgNVBAoTDTEwNjAgUmVzZWFyY2gx
+FjAUBgNVBAsTDTEwNjAgUmVzZWFyY2gxFjAUBgNVBAMTDVBldGVyIFJvZGdlcnMwggEiMA0GCSqG
+SIb3DQEBAQUAA4IBDwAwggEKAoIBAQC4ITm5ZlDc8ow5zHGKv+tlmxAHVUU6PAWCqs0t1tQLAXIg
+O0k9dafOIdnpn7fEcfcyybAVFxxrecxN0bq02fNCRtKDZOLnmGfvPimONIcLIEnNaFMmN/m8sQtM
+/liEXbKvlfeJFrDFPIsVlhcJHMxuyK0c9FEoBQzkU1u/W/+dmtaHlAfWLzUo+Bqh1RhlCWm4OLZS
+2DP9CiGsXxIF971xyGzClOPkK4AwmvvExYzRmVThbYq0jwXpO/GhaKZWYoq3R+GbhFpdObawz+H3
+vdVlFBSHJsMOc/RZsxlGS6ZowWL3awft+uqBssyvQMRp6Xt3YZ655+0Q7tGFe2yxlPvHAgMBAAEw
+DQYJKoZIhvcNAQEFBQADggEBAB07W2lKXwm3PGo+PjL7Z+GSHgY6eVZ95VjSQ+7+g3V/bd0SWU52
+qUOm+w8pNK7JSCy38GqQ+vewZ8/A1vimEEnOgeHxABE5QlJwf/p+LpKlJvMnGh0sBC7UuaHKvMic
+63MUS56qCpzx1HpBcIPde/QkupFk8vzWyCnASthNoVHlrmMzreWGy25YQZf3GxCl/g1VFbKPWrVS
+tOjBFRgeqwS4IKbBLclt/6rGxDk0gMoFwvuF5RRCmUsxlT90ZG18GtlKVAp6TnCLjCzLtUCfqk9G
+mkRdfV0TrVeM9Otk7OseyJpRB03MLaQtqRGQDHOfZVtFR5i/XZR0hGtCRKihYhQ=
+-----END CERTIFICATE-----</publickey>
+      <product>1060-NetKernel-EE</product>
+      <version>4.1.0</version>
+      <sets>main,universe</sets>
+      <signature>9559ce5691ca970968788309746e03eab338ef22eb6eb626a9d1d238e59bb6155cd40aebb394ef8db571ecc83c9573b5866e9842ae593dc79e715310613e0419b41033758a2b2fdd9d9b8b40d244ceb22f53240cf6ab8bdbb9ca213129cc81aabefd8e2e6180fd4d0f875f852d92853fb750e11899353e6beba8854e61b54e46135917bdca91b3bf488f7740bf86f598bccfe8ece910051caa409d13d3790791ef24c945ccf6308366b33b5f4cdcd665ff27895811535080fdc2daf540fa8343957ce436417234b01e6b3f67ca3c8a3d2d961c76f7fc70a3b86311acc9f8daec1ea7823dcd8b4c383454838403272ee86fdcf8a277df6d58b0903d47b2b9621d</signature>
+   </repository>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:ext:introspect</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13110</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>85471bce9b844affffe30280e1ffd02c9baec2dcaa007fdeb493a8833779561140892adf80d1cce4b17656beb58e49f95de5aa6990660c7d376df264c609bd757860dd704aabacd3732b2c4431c9619860234a7d954fbbaf8fb467cbe073e4d923543c73a48a0b5ef8a97490c85fc09ebe16ab85389128c52dd72a5a74fd73079c02d40acae4bd4a9bf4a19311f39b6a057113267375b12b84090558efaf765bb952f431a8abc6a10b39f2e5405128ee3fe5dd07c5d43860922ead98f63748d6982d80296668dc204b73c32870bc7193e268008b60494fd0b84635246164c84edbb239f086043d34b97a0d979cd57a1eb51ea3ddb58062a2bbb2511cac6dad07</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:ext:deadlock</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13210</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>30085afe808e0ee9173d8c5154e69296c5894378e1cb5c0e2f5b2921c56e108f6f9245569f4da4b35554e71b13ce4481e28e4a7887335fd5f64f1219be2c30e99410869df5b0ae0a9d8b3442df61224960ef4b84b7a9feedb060adced49620452a312f754658aa9ad094edc2e26bcb79fe3bd19d1c1a0027b8e171fb4571008aa0fc45e2c0e488d9569b071cdde232aa2f4fb98d0409be5f5e10cff4565c6e1876b7853b3fc7c7744b9298eebc52b8e4407f0ba7a4e39859ee224257bb2f9528beefa2fef69e6f8195cde8ead1525bc6a835658741e2e0492c301163c5c18de68d4cbc56ddfc5eb552ec01847349512a1f61010dce4937b2257b9e742d58b739</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:tpt:http</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13310</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>8de89826e703cce8b3c255a75fbfef7ee99c8301570f7119b4b259009df626a9bb71345c2a0e40d89bc71457476e949057a5e24dfdcf6ee1b7adb4c02200263b4ad1f078eef016de4ca00bedec2f77a334e94c07163db26bc6d86338896aa92e58447511309e776032eb9b425c21d48f6b1558db7b72a96e4398cdcf19dc77188a17db2f96d92a5d5616ca04d7bda72d64402d32d3e8a02692ad03138ea518f56bfbd448a46c7e23de5c71064629f5542b312650514f73017b61142b59a6ac495e9c88e54c5fe9c55ca68f514388f127497f28cc368628db1ef3af3988e3290b34ef9a8cbecb79e11aea971266484a37eb763030982e97fd173bd1b1ca1d9f9e</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:mod:leak</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13410</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>4e46649902e6925d2f1d0c101720b7160ea1e4f52fa26dbec91caefebd3be307d4488aa02976f6b39913865eb30ccde703d81ee1e7b367df2f74d07aac55de0afb64c458fa400f44c17f9d10a9254cc031ecb936c3f9c9db2f7197100c2b97c729abaa7dfd592b36f81f35d0637d8b3d9b84ab859e5d5837f365f8dc89a313bee465096262aeb19d2536282f618671ee8b0bce0cc9c1a2258c2e62bf0b2c4ff1b32aa504f0a0f405f6e120abf9c7b011635e2b750b71e24e41d5ed027b99652cd6b6c73b49cb58f7479e2d0d12c0c64ac495a11965484b7fc8c787ef950179fe13fd2c3925b48e96aa1a85834efd26948ccf412fcb6e34b5e751434df0714d42</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:arp</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13510</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>121f7c677a0bc093e81b3e49c3a9c25192b4b1d91045784113add1f340dcc1bcf474b7ab7f9b782bd11d42d976d49f4872e210c8bae3a1b28055a94e92536c71d964ac8253ac86306a9f9b3d6a4b993f2c04bf0070f96f5b9ba843459922cd9aadab11f420b76fd0c4d22fa7e0b1541a66a41ec7c91f01bf0ccdd329e782a4de7904477d6663b1c50f768fb2ae6aa1cff3e4caa50c8497f26eebbb56bb3270554cc953495b7a3bcddd533cf5e1744fde46fb43da690deb6ebb0e708981216f9a730cff3b1ef4066254bd30023a0d68169b31e4bd7651d628074bb1e8e39af44fa7723e82291be172c48a2b6eb3cee50c7499440ebd57dcdc86b9809f1aa190b5</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:apposite:client:app</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13610</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>080e739dbdce39e1d93a35a494deb2c0ace3a69b8b7cb3a759669d39c69e9777e3f39c15389f84192fa123d547d46aad085e123cde8a08dab3f1074af62e2792a64353635d7a4e871bab3135189dbeaf2ff80ac5abaa50a57b172b7298aaea7f4271b2d06b24a020b524ec91c3055d4464d0b71bbedc585bcbd12f383b4196eef7ffd1a2cb6ed3188190579ae0fa4f3f9e833e4257daa994ce9b40527e9b2859678e5c057b1c70441427909d82395aa49583d3154d8a374941d7fbf22803e11298b3ab21d33d9a538cfcea6c5548f788df7356258dd2fbcd9aad0cbdbdc9c32f5a1eef8a5f5eb4668626a539df01b848df074d2c59e9f4fa45d1f4db09c15d27</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:apposite:client:core</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13710</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>25c79de209e7d9e852923c7410754decf6c4d40836e2560d6bc595865dbf5de3d920d85695db984da1cd688165a4ad0d739b62eb3ab3936a04d391cb74355c3b87088bfa4424c1af71cedbadc2c59c285b3528d76693c7328856a8d18d5ce5347cdbcd208632a8f102c86a898ed44756582d9223c27f8237bbbc0413ea70f80f6475661cd4fcd68a1fdce7baaddfdd7f23f7d5f34676f2426b0b08a41863a77f647d1e2b36a5db9d514b53d2b89b84567b9cbba9fe4f47f367617c95aff71b077400d852b10ad4aaf875ddf2147cb77983f61d1520891b3b0c8a6255be7cdb14a09bd7d58e5736b148c7377b02c6bfe98bce8beee958ead08ee31e4f049dc125</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:mod:architecture</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13810</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>36241edc88ae07a605ce8676632ff1effcb0150c2ae81f9bee9e30d25b9add2bb967e8e6f4b4acb6b14d1c67166fea8679c04b263e921677653f4c7ea8a72117908c1d8739bdd04ee87c63680b29da9d530e7a69730d698f67dc849d502706655910410d0b487994416acbd482569b331e2774084a4af2feac18eccea3f373ca4449e49bb04044e75022dd86a4cc6fc29ccc36090596e4beeb2620e0bf834819322e73dd9c9ec91eac2ffca65815ff0d83ca9b8c9376cf0324bdfc0ca971aa7e697f788e5a46b15441ec960b04771827e82073ccda6511b3f15f7876a847de9fc03812c3cdc55147b9409c7757f2626bc480c3a7b2abd300fb9a96117bfed04d</fingerprint>
+      </system>
+   </license>
+   <license>
+      <product>
+         <id>urn:com:ten60:netkernel:nkp</id>
+         <name>1060 NetKernel Enterprise Edition</name>
+         <version>4.1.0</version>
+      </product>
+      <recipient>
+         <person>Chris Cormack</person>
+         <email>chris@cormack.me.uk</email>
+         <project>DeltaXML</project>
+         <business-unit>DeltaXML</business-unit>
+         <business>DeltaXML</business>
+      </recipient>
+      <constraints>
+         <units>1</units>
+         <end-time>1281708488000</end-time>
+         <max-version/>
+         <hostname>EVALUATION</hostname>
+      </constraints>
+      <system>
+         <version>1.0</version>
+         <serial>49d224a8-602b-11df-b220-5254c44711b8-13910</serial>
+         <issuer>1060 Research Limited - http://www.1060research.com</issuer>
+         <fingerprint>0f8e7ce6036e050885928ae166c8e8b156321d08dbb47f94c819c3a36246e278a11f6184f402f1ba4ffed5cadb1d8a14b52169a870635baf062b8e2960fcdadbe2a204d4b3fe9a52a1ee12820e81e706a0f027e815e24cf8bf6914023db7e11f3c505171cd4da00e3e5d01bf77bf1f3644d62a10841d5054c63b35803a1891fe8f46912917004026ea569e3b249fdc707cfc0a477e81abeda8cec7dab2441196a3a0771d1be4f392987f16c3174485ebd1933255589bfe2fa001f78a5c2bc1f2b6a80b6a843eaa49ebf82e6ebf59765347420056fc639a95f34467b942225d24e972d80f7da303e3140130b4d2c5a5dd4be4ccdb7b4212fa5337252f9d42e3a6</fingerprint>
+      </system>
+   </license>
+</license-file>

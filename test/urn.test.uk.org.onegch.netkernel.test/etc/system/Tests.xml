@@ -1,0 +1,9 @@
+<tests>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:selfTest</id>
+    <name>test:selfTest</name>
+    <desc>Self tests for TestNG-NK</desc>
+    <uri>res:/test/selfTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
+</tests>
