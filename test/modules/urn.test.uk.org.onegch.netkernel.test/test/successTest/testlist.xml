@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testlist>
-  <import>res:/org/netkernel/xml/assert/assertLibrary.xml</import>
-  <test name="selfTest1">
+  <test name="successTest">
     <request>
-      <identifier>res:/test/selfTest/true.txt</identifier>
+      <identifier>res:/test/true.txt</identifier>
       <representation>java.lang.Boolean</representation>
     </request>
     <assert>

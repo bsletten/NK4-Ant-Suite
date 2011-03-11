@@ -1,0 +1,16 @@
+<tests>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:successTest</id>
+    <name>test:successTest</name>
+    <desc>Success test for TestNG-NK</desc>
+    <uri>res:/test/successTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:failureTest</id>
+    <name>test:failureTest</name>
+    <desc>Failure test for TestNG-NK</desc>
+    <uri>res:/test/failureTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
+</tests>

@@ -10,4 +10,5 @@ testNG-nk4*
 .idea/uiDesigner.xml
 .idea/vcs.xml
 .idea/workspace.xml
-
+test/build
+test/report

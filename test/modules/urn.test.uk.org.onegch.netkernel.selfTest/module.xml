@@ -2,12 +2,12 @@
 <module version="2.0">
   <meta>
     <identity>
-      <uri>urn:test:uk:org:onegch:netkernel:test</uri>
+      <uri>urn:test:uk:org:onegch:netkernel:selfTest</uri>
       <version>0.3.0</version>
     </identity>
     <info>
       <name>TestNG-NK / Self Test</name>
-      <description>Self Testing for TestNG-NK</description>
+      <description>A Simple Self Test for TestNG-NK</description>
     </info>
   </meta>
 
@@ -15,7 +15,7 @@
     <dynamic/>
   </system>
 
-  <rootspace name="Self Testing for TestNG-NK" uri="urn:test:uk:org:onegch:netkernel:test" public="true">
+  <rootspace name="Self Testing for TestNG-NK" uri="urn:test:uk:org:onegch:netkernel:selfTest" public="true">
     <fileset>
       <glob>etc/system/Tests.xml</glob>
     </fileset>

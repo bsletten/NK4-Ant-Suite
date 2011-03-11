@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testlist>
+  <test name="selfTest">
+    <request>
+      <identifier>res:/test/selfTest/true.txt</identifier>
+      <representation>java.lang.Boolean</representation>
+    </request>
+    <assert>
+      <true/>
+    </assert>
+  </test>
+</testlist>

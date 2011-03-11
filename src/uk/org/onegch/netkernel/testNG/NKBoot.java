@@ -117,8 +117,6 @@ public class NKBoot {
       IKernelListener monitor = Layer0Factory.createMonitor(k);
       k.setMonitor(monitor);
 
-      FastSchematron.loadValidationCache();
-
       // load some contexts
       List<IModuleFactory> mf = new ArrayList<IModuleFactory>();
       ClassLoader cl = this.getClass().getClassLoader();
