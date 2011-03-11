@@ -6,7 +6,12 @@
       <root url="jar://$PROJECT_DIR$/lib/httpcore-4.0.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/httpclient-4.0.1.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/dom4j-2.0.0-ALPHA-2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/testng-5.11-jdk15.jar!/" />
+      <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.netkernel.impl-4.16.24.jar!/" />
+      <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.boot-1.15.22.jar!/" />
+      <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.module.standard-1.43.29.jar!/" />
+      <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.netkernel.api-4.1.5.jar!/" />
+      <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.layer0-1.59.57.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/testng-5.14.10.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

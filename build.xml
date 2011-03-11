@@ -2,7 +2,11 @@
 <project name="testNG-nk4" default="package">
   <property name="nk-distribution-jar" value="${user.home}/Library/NetKernel/1060-NetKernel-SE-4.1.1.jar"/>
   <property name="version" value="0_3"/>
-  
+
+  <taskdef name="testng"
+           classpath="lib/testng-5.14.10.jar"
+           classname="org.testng.TestNGAntTask" />
+
   <path id="path">
     <pathelement path="build/"/>
     <fileset dir="nk-distribution/lib">
@@ -12,9 +16,10 @@
       <include name="*.jar"/>
     </fileset>
   </path>
-  
+
   <target name="init">
     <mkdir dir="build"/>
+    <mkdir dir="test-build"/>
   </target>
   
   <target name="clean">
@@ -54,8 +59,8 @@
            debug="true"
            target="1.5"/>
   </target>
-  
-  <target name="package" depends="build">
+
+  <target name="jar" depends="build">
     <jar destfile="testNG-nk4.jar">
       <zipfileset dir="build" prefix=""/>
       <zipfileset dir="src" prefix="src" excludes="build.xml" />
@@ -66,8 +71,10 @@
         <include name="**/KernelLogConfig.xml"/>
         <include name="**/logLevels.xml"/>
       </zipfileset>
-    </jar>
-    
+    </jar>    
+  </target>
+  
+  <target name="package" depends="jar">
     <zip destfile="testNG-nk4-${version}.zip">
       <zipfileset dir="src" prefix="testNG-nk4-${version}/" includes="build.xml" />
       <zipfileset dir="test" prefix="testNG-nk4-${version}/test" />
@@ -79,5 +86,38 @@
       <zipfileset dir="nk-distribution/modules" prefix="testNG-nk4-${version}/nk-distribution/modules"/>
       <zipfileset file="generate-suite.xsl" prefix="testNG-nk4-${version}/"/>
     </zip>
+  </target>
+
+  <path id="test.path">
+    <file file="testNG-nk4.jar"/>
+    <pathelement path="test-build/"/>
+    <fileset file="nk-distribution/lib/*.jar"/>
+    <fileset dir="lib">
+      <include name="http*.jar"/>
+      <include name="commons*.jar"/>
+      <include name="dom4j*.jar"/>
+      <include name="jaxen*.jar"/>
+      <include name="testng*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="compile-test" depends="init,jar">
+    <javac classpathref="test.path"
+           srcdir="test-src"
+           destdir="test-build"
+           debug="true"
+           target="1.5"/>
+  </target>
+
+  <target name="test" depends="compile-test, jar">
+    <delete dir="log"/>
+    <mkdir dir="log"/>
+    <testng classpathref="test.path" outputdir="test-report">
+      <classfileset dir="test-build/" includes="**/*.class" />
+      <sysproperty key="java.protocol.handler.pkgs" value="org.ten60.netkernel.protocolhandler"/>
+      <sysproperty key="uk.org.onegch.netkernel.testNG.modules.basedir" value="${basedir}/"/>
+      <sysproperty key="uk.org.onegch.netkernel.testNG.modules" value="test/urn.test.uk.org.onegch.netkernel.test"/>
+      <sysproperty key="netkernel.http.backend.port" value="1068"/>
+    </testng>
   </target>
 </project>
