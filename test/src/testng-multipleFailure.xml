@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="NetKernel Tests" verbose="0">
+  <test name="urn:uk:org:onegch:netkernel:test:multipleSuccessTest / failureTest1">
+    <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:multipleFailureTest"/>
+    <parameter name="name" value="failureTest1"/>
+    <classes>
+      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+    </classes>
+  </test>
+  <test name="urn:uk:org:onegch:netkernel:test:multipleFailureTest / failureTest2">
+    <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:multipleFailureTest"/>
+    <parameter name="name" value="failureTest2"/>
+    <classes>
+      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+    </classes>
+  </test>
+</suite>

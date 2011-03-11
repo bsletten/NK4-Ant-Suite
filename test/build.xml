@@ -27,7 +27,7 @@
      <mkdir dir="log"/>
      <testng classpathref="run.path"
              haltonfailure="true"
-             listeners="uk.org.onegch.netkernel.testNG.NKInvokerTestListener">
+             listeners="uk.org.onegch.netkernel.testNG.NKInvokerSuiteListener">
        <xmlfileset file="testng.xml"/>
        <sysproperty key="java.protocol.handler.pkgs" value="org.ten60.netkernel.protocolhandler"/>
        <sysproperty key="uk.org.onegch.netkernel.testNG.modules.basedir" value="${basedir}/"/>

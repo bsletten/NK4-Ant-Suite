@@ -20,4 +20,39 @@
     <uri>res:/test/exceptionTest/testlist.xml</uri>
     <icon></icon>
   </test>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:mixedTest</id>
+    <name>test:mixedTest</name>
+    <desc>Mixed test for TestNG-NK</desc>
+    <uri>res:/test/mixedTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:multipleSuccessTest</id>
+    <name>test:multipleSuccessTest</name>
+    <desc>Multiple success test for TestNG-NK</desc>
+    <uri>res:/test/multipleSuccessTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:multipleFailureTest</id>
+    <name>test:multipleFailureTest</name>
+    <desc>Multiple Failure test for TestNG-NK</desc>
+    <uri>res:/test/multipleFailureTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:multipleExceptionTest</id>
+    <name>test:multipleExceptionTest</name>
+    <desc>Multiple Exception test for TestNG-NK</desc>
+    <uri>res:/test/multipleExceptionTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:multipleMixedTest</id>
+    <name>test:multipleMixedTest</name>
+    <desc>Multiple Mixed test for TestNG-NK</desc>
+    <uri>res:/test/multipleMixedTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
 </tests>

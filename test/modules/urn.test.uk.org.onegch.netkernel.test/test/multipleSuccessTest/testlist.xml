@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testlist>
+  <test name="successTest1">
+    <request>
+      <identifier>res:/test/true.txt</identifier>
+      <representation>java.lang.Boolean</representation>
+    </request>
+    <assert>
+      <true/>
+    </assert>
+  </test>
+  <test name="successTest2">
+    <request>
+      <identifier>res:/test/false.txt</identifier>
+      <representation>java.lang.Boolean</representation>
+    </request>
+    <assert>
+      <false/>
+    </assert>
+  </test>
+</testlist>

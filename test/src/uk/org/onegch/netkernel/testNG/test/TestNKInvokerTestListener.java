@@ -1,18 +1,31 @@
 package uk.org.onegch.netkernel.testNG.test;
 
+import org.testng.ITestListener;
 import org.testng.ITestResult;
-import uk.org.onegch.netkernel.testNG.NKInvokerTestListener;
+import org.testng.TestListenerAdapter;
+import uk.org.onegch.netkernel.testNG.NKInvokerSuiteListener;
+import uk.org.onegch.netkernel.testNG.TestRunner;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestNKInvokerTestListener extends NKInvokerTestListener {
+public class TestNKInvokerTestListener extends TestListenerAdapter {
   private Map<String, ITestResult> testResults= new HashMap<String, ITestResult>();
   private int testCount= 0;
   private int successCount= 0;
   private int failureCount= 0;
   private int skippedCount= 0;
   private int failedButWithinSuccessPercentageCount= 0;
+
+  private String calculateName(ITestResult iTestResult) {
+    if (iTestResult.getInstance() instanceof TestRunner) {
+      Object[] parameters= iTestResult.getParameters();
+      return parameters[0] + " / " + parameters[1];
+
+    } else {
+      return iTestResult.getTestName();
+    }
+  }
 
   @Override
   public void onTestStart(ITestResult iTestResult) {
@@ -22,25 +35,29 @@ public class TestNKInvokerTestListener extends NKInvokerTestListener {
   @Override
   public void onTestSuccess(ITestResult iTestResult) {
     successCount++;
-    testResults.put(iTestResult.getName(), iTestResult);
+    testResults.put(calculateName(iTestResult), iTestResult);
   }
 
   @Override
   public void onTestFailure(ITestResult iTestResult) {
     failureCount++;
-    testResults.put(iTestResult.getName(), iTestResult);
+    testResults.put(calculateName(iTestResult), iTestResult);
   }
 
   @Override
   public void onTestSkipped(ITestResult iTestResult) {
     skippedCount++;
-    testResults.put(iTestResult.getName(), iTestResult);
+    testResults.put(calculateName(iTestResult), iTestResult);
   }
 
   @Override
   public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
     failedButWithinSuccessPercentageCount++;
-    testResults.put(iTestResult.getName(), iTestResult);
+    testResults.put(calculateName(iTestResult), iTestResult);
+  }
+
+  public Map<String, ITestResult> getTestResults() {
+    return testResults;
   }
 
   public int getTestCount() {

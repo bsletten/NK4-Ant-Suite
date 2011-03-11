@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testlist>
+  <test name="exceptionTest1">
+    <request>
+      <identifier>res:/nonsense</identifier>
+    </request>
+    <assert>
+      <true/>
+    </assert>
+  </test>
+  <test name="exceptionTest2">
+    <request>
+      <identifier>res:/nonsense</identifier>
+    </request>
+    <assert>
+      <true/>
+    </assert>
+  </test>
+</testlist>
