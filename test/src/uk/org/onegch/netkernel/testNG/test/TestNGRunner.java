@@ -72,4 +72,23 @@ public class TestNGRunner {
     Assert.assertEquals(listener.getFailureCount(), 1, "Only 1 test should have failed");
   }
 
+  @Test
+  public void testMixed() throws IOException, SAXException, ParserConfigurationException {
+    System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
+    System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
+    System.setProperty("netkernel.http.backend.port", "1068");
+
+    TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
+
+    Parser parser= new Parser("test/src/testng-mixed.xml");
+
+    TestNG testng = new TestNG();
+    testng.setXmlSuites((List<XmlSuite>) parser.parse());
+    testng.addListener(listener);
+    testng.run();
+
+    Assert.assertEquals(listener.getTestCount(), 3, "Only 1 test should have been run");
+    Assert.assertEquals(listener.getSuccessCount(), 1, "Only 1 test should have been successful");
+    Assert.assertEquals(listener.getFailureCount(), 2, "Only 2 tests should have failed");
+  }
 }
