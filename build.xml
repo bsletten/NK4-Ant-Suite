@@ -39,6 +39,8 @@
         <include name="modules/*.sjar"/>
         <include name="modules/*.jar"/>
         <exclude name="modules/*.apposite.*"/>
+        <exclude name="modules/*.package.*"/>
+        <exclude name="modules/*.cron*"/>
         <exclude name="modules/*arp*"/>
         <exclude name="modules/*deadlock*"/>
         <exclude name="modules/*installer*"/>

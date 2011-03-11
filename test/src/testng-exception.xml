@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="NetKernel Tests" verbose="0">
+  <test name="urn:uk:org:onegch:netkernel:test:exceptionTest / exceptionTest">
+    <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:exceptionTest"/>
+    <parameter name="name" value="exceptionTest"/>
+    <classes>
+      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+    </classes>
+  </test>
+</suite>

@@ -13,4 +13,11 @@
     <uri>res:/test/failureTest/testlist.xml</uri>
     <icon></icon>
   </test>
+  <test>
+    <id>urn:uk:org:onegch:netkernel:test:exceptionTest</id>
+    <name>test:exceptionTest</name>
+    <desc>Exception test for TestNG-NK</desc>
+    <uri>res:/test/exceptionTest/testlist.xml</uri>
+    <icon></icon>
+  </test>
 </tests>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testlist>
+  <test name="exceptionTest">
+    <request>
+      <identifier>res:/nonsense</identifier>
+    </request>
+    <assert>
+      <true/>
+    </assert>
+  </test>
+</testlist>
