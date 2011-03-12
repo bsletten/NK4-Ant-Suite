@@ -12,6 +12,8 @@
       <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.netkernel.api-4.1.5.jar!/" />
       <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.layer0-1.59.57.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/testng-5.14.10.jar!/" />
+      <root url="jar://$USER_HOME$/Library/NetKernel/EE_4.1.1/lib/urn.com.ten60.core.cache.se-1.2.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/saxon9he.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

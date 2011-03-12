@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modules>
+  <repository>
+    <config>
+      <baseUrl>http://apposite.netkernel.org/repo/</baseUrl>
+      <path>1060-NetKernel-SE/4.1.1/</path>
+      <set>main</set>
+    </config>
+    <packages>
+      <package target="lib">bootloader</package>
+      <package target="lib">cache-se</package>
+      <package target="lib">layer0</package>
+      <package target="lib">module-standard</package>
+      <package target="lib">kernel</package>
+      <package>layer1</package>
+      <package>system-core</package>
+      <package>xml-core</package>
+      <package>lang-groovy</package>
+      <package>http-server</package>
+      <package>nkse-http-fulcrum-backend</package>
+      <package>nkse-control-panel</package>
+      <package>nkse-dev-tools</package>
+      <package>lang-xrl</package>
+      <package>nkse-visualizer</package>
+      <package>nkse-xunit</package>
+      <package>lang-dpml</package>
+      <package>xml-saxon</package>
+      <package>database-relational</package>
+      <package>database-h2</package>
+      <package>lang-freemarker</package>
+      <package>pds-core</package>
+      <package>security-core</package>
+    </packages>
+  </repository>
+</modules>

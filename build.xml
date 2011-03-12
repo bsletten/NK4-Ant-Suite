@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="testNG-nk4" default="package">
-  <property name="nk-distribution-jar" value="${user.home}/Library/NetKernel/1060-NetKernel-SE-4.1.1.jar"/>
   <property name="version" value="0_3"/>
 
   <taskdef name="testng"
            classpath="lib/testng-5.14.10.jar"
            classname="org.testng.TestNGAntTask" />
 
-  <path id="path">
-    <pathelement path="build/"/>
-    <fileset dir="nk-distribution/lib">
-      <include name="*.jar"/>
-    </fileset>
+  <path id="base.path">
+    <pathelement path="build/class"/>
     <fileset dir="lib">
       <include name="*.jar"/>
     </fileset>
   </path>
 
+  <path id="build.path">
+    <path refid="base.path"/>
+    <fileset dir="build/modules/"/>
+    <fileset dir="build/lib/"/>
+  </path>
+
   <target name="init">
     <mkdir dir="build"/>
+    <mkdir dir="build/class"/>
     <mkdir dir="test/build"/>
   </target>
   
@@ -31,44 +34,37 @@
     <delete dir="nk-distribution"/>
     <delete file="testNG-nk4.jar"/>
   </target>
-  
-  <target name="build-from-distribution">
-    <unjar src="${nk-distribution-jar}" dest="nk-distribution">
-      <patternset>
-        <include name="lib/*.jar"/>
-        <include name="modules/*.sjar"/>
-        <include name="modules/*.jar"/>
-        <exclude name="modules/*.apposite.*"/>
-        <exclude name="modules/*.package.*"/>
-        <exclude name="modules/*.cron*"/>
-        <exclude name="modules/*arp*"/>
-        <exclude name="modules/*deadlock*"/>
-        <exclude name="modules/*installer*"/>
-        <exclude name="modules/*frontend*"/>
-      </patternset>
-    </unjar>
-    <unjar src="${nk-distribution-jar}" dest="${basedir}">
-      <patternset>
-        <include name="etc/license/*"/>
-      </patternset>
-    </unjar>
+
+  <target name="download-modules" depends="init">
+    <delete dir="build/lib"/>
+    <delete dir="build/modules"/>
+
+    <javac classpathref="base.path"
+           srcdir="src"
+           destdir="build/class"
+           debug="true"
+           target="1.5"
+           includes="**/DownloadFromRepository.java"/>
+    <java classpathref="base.path"
+          classname="uk.org.onegch.netkernel.testNG.DownloadFromRepository"/>
   </target>
   
-  <target name="build" depends="init,build-from-distribution">
-    <javac classpathref="path"
+  <target name="build" depends="init, download-modules">
+    <javac classpathref="build.path"
            srcdir="src"
-           destdir="build"
+           destdir="build/class"
            debug="true"
-           target="1.5"/>
+           target="1.5"
+           excludes="**/DownloadFromRepository.java"/>
   </target>
 
   <target name="jar" depends="build">
+    <delete file="testNG-nk4.jar"/>
     <jar destfile="testNG-nk4.jar">
-      <zipfileset dir="build" prefix=""/>
+      <zipfileset dir="build/class" prefix="" excludes="**/DownloadFromRepository.class"/>
+      <zipfileset dir="build/modules" prefix="modules" />
       <zipfileset dir="src" prefix="src" excludes="build.xml" />
       <zipfileset file="generate-suite.xsl" prefix=""/>
-      <zipfileset dir="nk-distribution/modules" prefix="modules"/>
-      <zipfileset dir="modules" prefix="modules"/>
       <zipfileset dir="etc" prefix="etc">
         <include name="**/KernelLogConfig.xml"/>
         <include name="**/logLevels.xml"/>
@@ -77,14 +73,14 @@
   </target>
   
   <target name="package" depends="jar">
+    <delete file="testNG-nk4-${version}.zip"/>
     <zip destfile="testNG-nk4-${version}.zip">
       <zipfileset dir="test" prefix="testNG-nk4-${version}/test" />
       <zipfileset file="testNG-nk4.jar" prefix="testNG-nk4-${version}/"/>
       <zipfileset dir="lib" prefix="testNG-nk4-${version}/lib"/>
       <zipfileset dir="etc" prefix="testNG-nk4-${version}/etc"/>
-      <zipfileset dir="modules" prefix="testNG-nk4-${version}/modules"/>
-      <zipfileset dir="nk-distribution/lib" prefix="testNG-nk4-${version}/nk-distribution/lib"/>
-      <zipfileset dir="nk-distribution/modules" prefix="testNG-nk4-${version}/nk-distribution/modules"/>
+      <zipfileset dir="build/lib" prefix="testNG-nk4-${version}/nk-distribution/lib"/>
+      <zipfileset dir="build/modules" prefix="testNG-nk4-${version}/nk-distribution/modules"/>
       <zipfileset file="generate-suite.xsl" prefix="testNG-nk4-${version}/"/>
     </zip>
   </target>
@@ -92,7 +88,7 @@
   <path id="test.path">
     <file file="testNG-nk4.jar"/>
     <pathelement path="test/build/"/>
-    <fileset file="nk-distribution/lib/*.jar"/>
+    <fileset file="build/lib/*.jar"/>
     <fileset dir="lib">
       <include name="http*.jar"/>
       <include name="commons*.jar"/>
@@ -102,7 +98,7 @@
     </fileset>
   </path>
 
-  <target name="compile-test" depends="init,jar">
+  <target name="compile-test" depends="init,jar,download-modules">
     <javac classpathref="test.path"
            srcdir="test/src"
            destdir="test/build"

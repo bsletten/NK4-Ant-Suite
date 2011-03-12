@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<logs>
+<logs xmlns:hds="http://netkernel.org/hds">
 <log>
 <id>NetKernel</id>
 <name>NetKernel System Log</name>
 <levels>
-<severe>true</severe>
-<warning>true</warning>
-<info>true</info>
-<fine>false</fine>
-<finer>false</finer>
-<debug>false</debug>
-<cache>false</cache>
+<severe hds:type="BOOLEAN">true</severe>
+<warning hds:type="BOOLEAN">true</warning>
+<info hds:type="BOOLEAN">false</info>
+<fine hds:type="BOOLEAN">false</fine>
+<finer hds:type="BOOLEAN">false</finer>
+<debug hds:type="BOOLEAN">false</debug>
+<cache hds:type="BOOLEAN">false</cache>
 </levels>
 </log>
 <log>
-<id>org.netkernel.mod.cron</id>
-<name>Cron Log</name>
+<id>org.netkernel.tpt.http</id>
+<name>HTTP Transport</name>
 <levels>
-<severe>true</severe>
-<warning>true</warning>
-<info>true</info>
-<fine>false</fine>
-<finer>false</finer>
-<debug>false</debug>
-<cache>false</cache>
+<severe hds:type="BOOLEAN">true</severe>
+<warning hds:type="BOOLEAN">true</warning>
+<info hds:type="BOOLEAN">false</info>
+<fine hds:type="BOOLEAN">false</fine>
+<finer hds:type="BOOLEAN">false</finer>
+<debug hds:type="BOOLEAN">false</debug>
+<cache hds:type="BOOLEAN">false</cache>
 </levels>
 </log>
 </logs>
