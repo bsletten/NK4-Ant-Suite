@@ -23,10 +23,12 @@
     <mkdir dir="build"/>
     <mkdir dir="build/class"/>
     <mkdir dir="test/build"/>
+    <mkdir dir="log"/>
   </target>
   
   <target name="clean">
     <delete dir="build"/>
+    <delete dir="log"/>
     <delete file="testNG-nk4.jar"/>
     <delete dir="${basedir}">
       <include name="testNG-nk4*.zip"/>
