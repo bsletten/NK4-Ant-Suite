@@ -8,10 +8,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class DownloadFromRepository {
   private static final int BUFFER = 2048;
@@ -77,7 +76,6 @@ public class DownloadFromRepository {
       System.err.println(" * expanding download");
       expandPackage(packageFile, expandedPackageFolder);
 
-
       File targetFolder = new File("build/" + target + "/");
       if (!targetFolder.exists()) {
         targetFolder.mkdirs();
@@ -87,22 +85,72 @@ public class DownloadFromRepository {
     }
   }
 
-  private static void writeModuleList(List<String> moduleList, File moduleListFile) throws Exception {
-    BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(moduleListFile));
-    for (String s : moduleList) {
-      bufferedWriter.append("/lib/" + s);
-      bufferedWriter.newLine();
-    }
-    bufferedWriter.close();
-  }
-
-  private static void copyModules(File modulesFolder, File expandedPackageFolder) {
+  private static void copyModules(File modulesFolder, File expandedPackageFolder) throws Exception {
     File packageModulesFolder= new File(expandedPackageFolder, "modules/");
     for(File module : packageModulesFolder.listFiles()) {
       String moduleName= module.getName();
-      System.err.println(" * moving module " + moduleName);
-      module.renameTo(new File(modulesFolder, moduleName));
+
+      File expandedModuleFolder= new File(expandedPackageFolder, "modules/expanded/" + moduleName);
+      if (!expandedModuleFolder.exists()) {
+        expandedModuleFolder.mkdirs();
+      }
+      File logConfigFile= expandModule(module, expandedModuleFolder);
+
+      if (logConfigFile != null) {
+        processLogConfigFile(logConfigFile);
+        System.err.println(" * processing LogConfig.xml in module " + moduleName);
+        zipDir(new File(modulesFolder, moduleName), expandedModuleFolder, expandedModuleFolder.getPath() + "/");
+      } else {
+        System.err.println(" * moving module " + moduleName);
+        module.renameTo(new File(modulesFolder, moduleName));
+      }
     }
+  }
+
+  private static void zipDir(File zipFile, File dir, String stripPrefix) throws Exception {
+    ZipOutputStream out = new ZipOutputStream(new FileOutputStream(zipFile));
+    addDir(dir, out, stripPrefix);
+    out.close();
+  }
+
+  static void addDir(File dirObj, ZipOutputStream out, String stripPrefix) throws IOException {
+    File[] files = dirObj.listFiles();
+    byte[] tmpBuf = new byte[1024];
+
+    for (int i = 0; i < files.length; i++) {
+      String filePath= files[i].getPath().substring(stripPrefix.length());
+
+      if (files[i].isDirectory()) {
+        ZipEntry entry= new ZipEntry(filePath + "/");
+        out.putNextEntry(entry);
+        addDir(files[i], out, stripPrefix);
+      } else {
+        FileInputStream in = new FileInputStream(files[i]);
+        out.putNextEntry(new ZipEntry(filePath));
+        int len;
+        while ((len = in.read(tmpBuf)) > 0) {
+          out.write(tmpBuf, 0, len);
+        }
+        out.closeEntry();
+        in.close();
+      }
+    }
+  }
+
+  private static void processLogConfigFile(File logConfigFile) throws Exception {
+    Processor p= new Processor(false);
+
+    DocumentBuilder documentBuilder = p.newDocumentBuilder();
+    XdmNode logConfigDoc = documentBuilder.build(logConfigFile);
+    XdmNode processLogConfigDoc = documentBuilder.build(new File("processLogConfig.xsl"));
+
+    Serializer destination = new Serializer();
+    destination.setOutputFile(logConfigFile);
+
+    XsltTransformer processLogConfigXslt = p.newXsltCompiler().compile(processLogConfigDoc.asSource()).load();
+    processLogConfigXslt.setInitialContextNode(logConfigDoc);
+    processLogConfigXslt.setDestination(destination);
+    processLogConfigXslt.transform();
   }
 
   private static void expandPackage(File packageFile, File expandedPackageFolder) throws Exception {
@@ -110,23 +158,61 @@ public class DownloadFromRepository {
     ZipInputStream in = new ZipInputStream(new BufferedInputStream(new FileInputStream(packageFile)));
     ZipEntry entry;
     while ((entry = in.getNextEntry()) != null) {
-      int count;
-      byte data[] = new byte[BUFFER];
+      if (entry.isDirectory()) {
+        File targetFile= new File(expandedPackageFolder.getPath() + "/" + entry.getName());
+        targetFile.mkdirs();
+      } else {
+        int count;
+        byte data[] = new byte[BUFFER];
 
-      // write the files to the disk
-      File targetFile= new File(expandedPackageFolder.getPath() + "/" + entry.getName());
-      if (!targetFile.getParentFile().exists()) {
-        targetFile.getParentFile().mkdirs();
-      }
-      out = new BufferedOutputStream(new FileOutputStream(targetFile), BUFFER);
+        // write the files to the disk
+        File targetFile= new File(expandedPackageFolder.getPath() + "/" + entry.getName());
+        if (!targetFile.getParentFile().exists()) {
+          targetFile.getParentFile().mkdirs();
+        }
+        out = new BufferedOutputStream(new FileOutputStream(targetFile), BUFFER);
 
-      while ((count = in.read(data, 0, BUFFER)) != -1) {
-        out.write(data, 0, count);
+        while ((count = in.read(data, 0, BUFFER)) != -1) {
+          out.write(data, 0, count);
+        }
+        out.flush();
+        out.close();
       }
-      out.flush();
-      out.close();
     }
     in.close();
+  }
+
+  private static File expandModule(File moduleFile, File expandedModuleFolder) throws Exception {
+    File logConfigFile= null;
+    BufferedOutputStream out = null;
+    ZipInputStream in = new ZipInputStream(new BufferedInputStream(new FileInputStream(moduleFile)));
+    ZipEntry entry;
+    while ((entry = in.getNextEntry()) != null) {
+      if (entry.isDirectory()) {
+        File targetFile= new File(expandedModuleFolder.getPath() + "/" + entry.getName());
+        targetFile.mkdirs();
+      } else {
+        int count;
+        byte data[] = new byte[BUFFER];
+
+        // write the files to the disk
+        File targetFile= new File(expandedModuleFolder.getPath() + "/" + entry.getName());
+
+        if (entry.getName().endsWith("LogConfig.xml")) {
+          logConfigFile = targetFile;
+        }
+
+        out = new BufferedOutputStream(new FileOutputStream(targetFile), BUFFER);
+
+        while ((count = in.read(data, 0, BUFFER)) != -1) {
+          out.write(data, 0, count);
+        }
+        out.flush();
+        out.close();
+      }
+    }
+    in.close();
+    return logConfigFile;
   }
 
   private static void downloadPackage(String url, File packageFile) throws Exception {

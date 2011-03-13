@@ -5,8 +5,6 @@
                 exclude-result-prefixes="xs onegch"
                 version="2.0">
   <xsl:output indent="yes"/>
-  <xsl:param name="main-repository" select="doc('http://apposite.netkernel.org/repo/netkernel/1060-NetKernel-SE/4.1.1/base/main/repository.xml')"/>
-  <xsl:param name="universe-repository" select="doc('http://apposite.netkernel.org/repo/netkernel/1060-NetKernel-SE/4.1.1/base/universe/repository.xml')"/>
   
   <xsl:template match="node() | @*" mode="#default">
     <xsl:copy>
