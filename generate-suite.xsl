@@ -20,7 +20,7 @@
         <parameter name="name" value="{@name}"/>
         
         <classes>
-          <class name="uk.org.onegch.netkernel.testNG.TestRunner" />
+          <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner" />
         </classes>
       </test>
     </xsl:for-each>

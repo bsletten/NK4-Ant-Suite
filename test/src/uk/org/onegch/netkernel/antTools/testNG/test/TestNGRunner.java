@@ -1,11 +1,11 @@
-package uk.org.onegch.netkernel.testNG.test;
+package uk.org.onegch.netkernel.antTools.testNG.test;
 
 import org.testng.*;
 import org.testng.annotations.Test;
 import org.testng.xml.Parser;
 import org.testng.xml.XmlSuite;
 import org.xml.sax.SAXException;
-import uk.org.onegch.netkernel.testNG.NKInvokerSuiteListener;
+import uk.org.onegch.netkernel.antTools.testNG.NKInvokerSuiteListener;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
@@ -14,8 +14,7 @@ import java.util.List;
 
 public class TestNGRunner {
   @Test
-  public void testSuccess() throws IOException, SAXException, ParserConfigurationException {
-    System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
+  public void testSuccess() throws IOException, SAXException, ParserConfigurationException {System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
     System.setProperty("netkernel.http.backend.port", "1068");
 

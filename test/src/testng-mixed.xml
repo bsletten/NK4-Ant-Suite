@@ -5,21 +5,21 @@
     <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:mixedTest"/>
     <parameter name="name" value="successTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
     </classes>
   </test>
   <test name="urn:uk:org:onegch:netkernel:test:mixedTest / failureTest">
     <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:mixedTest"/>
     <parameter name="name" value="failureTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
     </classes>
   </test>
   <test name="urn:uk:org:onegch:netkernel:test:mixedTest / exceptionTest">
     <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:mixedTest"/>
     <parameter name="name" value="exceptionTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
     </classes>
   </test>
 </suite>

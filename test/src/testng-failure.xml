@@ -5,7 +5,7 @@
     <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:failureTest"/>
     <parameter name="name" value="failureTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
     </classes>
   </test>
 </suite>

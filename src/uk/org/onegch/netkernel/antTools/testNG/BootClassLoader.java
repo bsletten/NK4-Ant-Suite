@@ -1,4 +1,4 @@
-package uk.org.onegch.netkernel.testNG;
+package uk.org.onegch.netkernel.antTools.testNG;
 import java.net.*;
 
 /**

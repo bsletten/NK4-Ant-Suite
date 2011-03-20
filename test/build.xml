@@ -27,11 +27,11 @@
      <mkdir dir="log"/>
      <testng classpathref="run.path"
              haltonfailure="true"
-             listeners="uk.org.onegch.netkernel.testNG.NKInvokerSuiteListener">
+             listeners="uk.org.onegch.netkernel.antTools.testNG.NKInvokerSuiteListener">
        <xmlfileset file="testng.xml"/>
        <sysproperty key="java.protocol.handler.pkgs" value="org.ten60.netkernel.protocolhandler"/>
-       <sysproperty key="uk.org.onegch.netkernel.testNG.modules.basedir" value="${basedir}/"/>
-       <sysproperty key="uk.org.onegch.netkernel.testNG.modules" value="modules/urn.test.uk.org.onegch.netkernel.selfTest"/>
+       <sysproperty key="uk.org.onegch.netkernel.antTools.testNG.modules.basedir" value="${basedir}/"/>
+       <sysproperty key="uk.org.onegch.netkernel.antTools.testNG.modules" value="modules/urn.test.uk.org.onegch.netkernel.selfTest"/>
        <sysproperty key="netkernel.http.backend.port" value="1068"/>
      </testng>
   </target>

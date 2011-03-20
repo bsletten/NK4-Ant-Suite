@@ -1,15 +1,18 @@
-package uk.org.onegch.netkernel.testNG;
+package uk.org.onegch.netkernel.antTools.testNG;
 
 import org.testng.*;
-import uk.org.onegch.netkernel.testNG.NKRunner;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryPoolMXBean;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 public class NKInvokerSuiteListener implements ISuiteListener {
   Map<ISuite, NKRunner> runnerMap= new HashMap<ISuite, NKRunner>();
 
   public void onStart(ISuite iSuite) {
+    
     NKRunner runner= new NKRunner();
     runnerMap.put(iSuite, runner);
     runner.start();

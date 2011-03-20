@@ -1,4 +1,4 @@
-package uk.org.onegch.netkernel.testNG;
+package uk.org.onegch.netkernel.antTools.testNG;
 
 /******************************************************************************
  * (c) Copyright 2002,2007, 1060 Research Ltd
@@ -56,7 +56,6 @@ import org.netkernel.layer0.boot.IModuleFactory;
 import org.netkernel.layer0.boot.ModuleManager;
 import org.netkernel.layer0.logging.LogManager;
 import org.netkernel.layer0.tools.ExtraMimeTypes;
-import org.netkernel.layer0.util.FastSchematron;
 import org.netkernel.layer0.util.Layer0Factory;
 import org.netkernel.layer0.util.PropertyConfiguration;
 import org.netkernel.urii.INetKernelThrowable;

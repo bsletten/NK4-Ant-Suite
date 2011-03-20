@@ -5,14 +5,14 @@
     <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:multipleExceptionTest"/>
     <parameter name="name" value="exceptionTest1"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
     </classes>
   </test>
   <test name="urn:uk:org:onegch:netkernel:test:multipleExceptionTest / exceptionTest2">
     <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:multipleExceptionTest"/>
     <parameter name="name" value="exceptionTest2"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.testNG.TestRunner"/>
+      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
     </classes>
   </test>
 </suite>

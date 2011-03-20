@@ -1,13 +1,7 @@
-package uk.org.onegch.netkernel.testNG;
+package uk.org.onegch.netkernel.antTools.testNG;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 public class NKRunner {
 
@@ -29,7 +23,7 @@ public class NKRunner {
       if (expandDirString != null) {
         expandDir = new File(expandDirString);
       }
-
+      
       // delete temp files on next instantiation - they are locked when we exit
       // due to classloaders :-(
       if (expandDir == null) {

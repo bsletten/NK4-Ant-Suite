@@ -1,10 +1,9 @@
-package uk.org.onegch.netkernel.testNG.test;
+package uk.org.onegch.netkernel.antTools.testNG.test;
 
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
-import uk.org.onegch.netkernel.testNG.NKInvokerSuiteListener;
-import uk.org.onegch.netkernel.testNG.TestRunner;
+import uk.org.onegch.netkernel.antTools.testNG.TestRunner;
 
 import java.util.HashMap;
 import java.util.Map;
