@@ -1,4 +1,4 @@
-package uk.org.onegch.netkernel.antTools.testNG;
+package uk.org.onegch.netkernel.antTools.downloader;
 
 import net.sf.saxon.s9api.*;
 import org.apache.http.HttpResponse;
@@ -12,7 +12,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 import java.util.zip.ZipOutputStream;
 
-public class DownloadFromRepository {
+public class DownloadNetKernel {
   private static final int BUFFER = 2048;
 
   public static void main(String[] args) throws Exception {

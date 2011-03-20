@@ -49,9 +49,9 @@
            destdir="build/class"
            debug="true"
            target="1.5"
-           includes="**/DownloadFromRepository.java"/>
+           includes="**/DownloadNetKernel.java"/>
     <java classpathref="base.path"
-          classname="uk.org.onegch.netkernel.antTools.testNG.DownloadFromRepository"/>
+          classname="uk.org.onegch.netkernel.antTools.downloader.DownloadNetKernel"/>
   </target>
   
   <target name="build" depends="init, download-modules">
@@ -60,13 +60,13 @@
            destdir="build/class"
            debug="true"
            target="1.5"
-           excludes="**/DownloadFromRepository.java"/>
+           excludes="**/DownloadNetKernel.java"/>
   </target>
 
   <target name="jar" depends="build">
     <delete file="testNG-nk4.jar"/>
     <jar destfile="testNG-nk4.jar">
-      <zipfileset dir="build/class" prefix="" excludes="**/DownloadFromRepository.class"/>
+      <zipfileset dir="build/class" prefix="" excludes="**/DownloadNetKernel.class"/>
       <zipfileset dir="build/modules" prefix="modules" />
       <zipfileset dir="src" prefix="src" excludes="build.xml" />
       <zipfileset file="generate-suite.xsl" prefix=""/>
