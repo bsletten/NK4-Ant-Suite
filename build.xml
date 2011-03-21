@@ -26,7 +26,6 @@
     <delete dir="test/build"/>
     <delete dir="test/report"/>
     <delete dir="test-output"/>
-    <delete file="nk4-ant-suite.jar"/>
     <delete dir="${basedir}">
       <include name="NK4-Ant-Suite*.zip"/>
       <include name="*.jar"/>
@@ -48,7 +47,8 @@
     <delete file="nk4-download.jar"/>
     <jar destfile="nk4-download.jar">
       <zipfileset dir="build/download/class" prefix="" includes="**/*"/>
-      <zipfileset dir="." includes="processRepository.xsl,processLogConfig.xsl,repository.xml"/>
+      <zipfileset dir="src/download/xsl" includes="processRepository.xsl,processLogConfig.xsl"/>
+      <zipfileset dir="src/download" includes="defaultRepository.xml"/>
     </jar>
   </target>
 
@@ -83,11 +83,8 @@
   <target name="nk4-testNG.jar" depends="nk4-testNG.build">
     <delete file="nk4-testNG.jar"/>
     <jar destfile="nk4-testNG.jar">
-      <zipfileset dir="build/testNG/class" prefix="" includes="**/*"/>
-      <zipfileset dir="etc" prefix="etc">
-        <include name="**/KernelLogConfig.xml"/>
-        <include name="**/logLevels.xml"/>
-      </zipfileset>
+      <zipfileset dir="build/testNG/class" prefix=""/>
+      <zipfileset dir="etc" prefix="etc"/>
       <zipfileset dir="." includes="generate-suite.xsl"/>
     </jar>
   </target>
@@ -97,11 +94,8 @@
   <target name="package" depends="jar">
     <delete file="NK4-Ant-Suite-${version}.zip"/>
     <zip destfile="NK4-Ant-Suite-${version}.zip">
-      <zipfileset dir="test" prefix="NK4-Ant-Suite-${version}/test" />
-      <zipfileset file="nk4-ant-suite.jar" prefix="NK4-Ant-Suite-${version}/"/>
+      <zipfileset dir="${basedir}" prefix="NK4-Ant-Suite-${version}/" includes="*.jar"/>
       <zipfileset dir="lib" prefix="NK4-Ant-Suite-${version}/lib"/>
-      <zipfileset dir="etc" prefix="NK4-Ant-Suite-${version}/etc"/>
-      <zipfileset file="generate-suite.xsl" prefix="NK4-Ant-Suite-${version}/"/>
     </zip>
   </target>
 

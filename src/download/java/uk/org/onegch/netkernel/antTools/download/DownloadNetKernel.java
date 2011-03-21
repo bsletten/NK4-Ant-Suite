@@ -44,7 +44,7 @@ public class DownloadNetKernel {
     DocumentBuilder documentBuilder = p.newDocumentBuilder();
     XdmNode repositoryDoc;
     if (repositoryConfig == null) {
-      repositoryDoc = documentBuilder.build(new StreamSource(DownloadNetKernelAntTask.class.getResourceAsStream("/repository.xml")));
+      repositoryDoc = documentBuilder.build(new StreamSource(DownloadNetKernelAntTask.class.getResourceAsStream("/defaultRepository.xml")));
     } else {
       repositoryDoc = documentBuilder.build(repositoryConfig);
     }
