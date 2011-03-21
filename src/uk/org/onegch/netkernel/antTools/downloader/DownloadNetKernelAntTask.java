@@ -27,7 +27,7 @@ public class DownloadNetKernelAntTask extends Task {
     }
 
     try {
-      new DownloadNetKernel(path, config).download();
+      new DownloadNetKernel(super.getProject().getBaseDir(), path, config).download();
     } catch (Exception e) {
       throw new BuildException(e);
     }

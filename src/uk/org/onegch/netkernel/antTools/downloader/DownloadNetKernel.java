@@ -16,10 +16,13 @@ import java.util.zip.ZipOutputStream;
 public class DownloadNetKernel {
   private static final int BUFFER = 2048;
 
+  private File baseDir;
   private File path;
   private File repositoryConfig;
+  private BufferedWriter modulesConfWriter;
 
-  public DownloadNetKernel(File path, File repositoryConfig) {
+  public DownloadNetKernel(File baseDir, File path, File repositoryConfig) {
+    this.baseDir = baseDir;
     this.path = path;
     this.repositoryConfig = repositoryConfig;
   }
@@ -33,6 +36,8 @@ public class DownloadNetKernel {
     if (!packagesFolder.exists()) {
       packagesFolder.mkdirs();
     }
+
+    modulesConfWriter = new BufferedWriter(new FileWriter(new File(path, "modules.conf")));
 
     Processor p= new Processor(false);
 
@@ -99,11 +104,12 @@ public class DownloadNetKernel {
         targetFolder.mkdirs();
       }
 
-      copyModules(targetFolder, expandedPackageFolder);
+      copyModules(targetFolder, expandedPackageFolder, (target.equals("lib")));
     }
+    modulesConfWriter.close();
   }
 
-  private static void copyModules(File modulesFolder, File expandedPackageFolder) throws Exception {
+  private void copyModules(File modulesFolder, File expandedPackageFolder, boolean isLibrary) throws Exception {
     File packageModulesFolder= new File(expandedPackageFolder, "modules/");
     for(File module : packageModulesFolder.listFiles()) {
       String moduleName= module.getName();
@@ -114,13 +120,21 @@ public class DownloadNetKernel {
       }
       File logConfigFile= expandModule(module, expandedModuleFolder);
 
+      File moduleFile= new File(modulesFolder, moduleName);
+
       if (logConfigFile != null) {
         processLogConfigFile(logConfigFile);
         System.err.println(" * processing LogConfig.xml in module " + moduleName);
-        zipDir(new File(modulesFolder, moduleName), expandedModuleFolder, expandedModuleFolder.getPath() + "/");
+        zipDir(moduleFile, expandedModuleFolder, expandedModuleFolder.getPath() + "/");
       } else {
         System.err.println(" * moving module " + moduleName);
-        module.renameTo(new File(modulesFolder, moduleName));
+        module.renameTo(moduleFile);
+      }
+
+      if (!isLibrary) {
+        String modulePath= moduleFile.getAbsolutePath().substring(baseDir.getAbsolutePath().length() + 1);
+        modulesConfWriter.append(modulePath);
+        modulesConfWriter.newLine();
       }
     }
   }
@@ -263,9 +277,5 @@ public class DownloadNetKernel {
 
     // The directory is now empty so delete it
     return dir.delete();
-  }
-
-  public static void main(String[] args) throws Exception {
-    new DownloadNetKernel(new File("build/packages/"), null).download();
   }
 }

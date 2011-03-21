@@ -34,13 +34,7 @@ package uk.org.onegch.netkernel.antTools.testNG;
  * Last Modified: $Date$
  *****************************************************************************/
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
@@ -169,6 +163,16 @@ public class NKBoot {
         String[] moduleStr = modules.split(",");
         for (int i = 0; i < moduleStr.length; i++) {
           mm.addModule(new File(basedir + moduleStr[i]).toURI());
+        }
+      }
+
+      String moduleConf = System.getProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf");
+      if (moduleConf != null) {
+        BufferedReader r = new BufferedReader(new FileReader(moduleConf));
+        String line = r.readLine();
+        while (line != null) {
+          mm.addModule(new File(line).toURI());
+          line = r.readLine();
         }
       }
     } catch (Throwable e) {
