@@ -1,4 +1,4 @@
-package uk.org.onegch.netkernel.antTools.downloader;
+package uk.org.onegch.netkernel.antTools.download;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;

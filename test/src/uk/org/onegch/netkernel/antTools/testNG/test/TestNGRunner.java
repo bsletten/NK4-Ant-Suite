@@ -17,7 +17,7 @@ public class TestNGRunner {
   public void testSuccess() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -38,7 +38,7 @@ public class TestNGRunner {
   public void testFailure() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -59,7 +59,7 @@ public class TestNGRunner {
   public void testException() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -80,7 +80,7 @@ public class TestNGRunner {
   public void testMixed() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -109,7 +109,7 @@ public class TestNGRunner {
   public void testMultipleSuccess() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -135,7 +135,7 @@ public class TestNGRunner {
   public void testMultipleFailure() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -161,7 +161,7 @@ public class TestNGRunner {
   public void testMultipleException() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -187,7 +187,7 @@ public class TestNGRunner {
   public void testMultipleMixed() throws IOException, SAXException, ParserConfigurationException {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();
@@ -222,7 +222,7 @@ public class TestNGRunner {
   public void testMultipleSuites() throws Exception {
     System.setProperty("java.protocol.handler.pkgs", "org.ten60.netkernel.protocolhandler");
     System.setProperty("uk.org.onegch.netkernel.testNG.modules", "test/modules/urn.test.uk.org.onegch.netkernel.test");
-    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download/modules.conf");
+    System.setProperty("uk.org.onegch.netkernel.antTools.testNG.moduleConf", "build/download-cache/modules.conf");
     System.setProperty("netkernel.http.backend.port", "1068");
 
     TestNKInvokerTestListener listener= new TestNKInvokerTestListener();

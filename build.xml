@@ -14,7 +14,8 @@
 
   <target name="init">
     <mkdir dir="build"/>
-    <mkdir dir="build/class"/>
+    <mkdir dir="build/download/class"/>
+    <mkdir dir="build/testNG/class"/>
     <mkdir dir="test/build"/>
     <mkdir dir="log"/>
   </target>
@@ -36,9 +37,9 @@
   <!-- nk4-download targets -->
   <target name="nk4-download.build" depends="init">
     <javac classpathref="base.path"
-           srcdir="src"
-           includes="**/downloader/**/*"
-           destdir="build/class"
+           srcdir="src/download/java"
+           includes="**/*.java"
+           destdir="build/download/class"
            debug="true"
            target="1.5"/>
   </target>
@@ -46,8 +47,7 @@
   <target name="nk4-download.jar" depends="nk4-download.build">
     <delete file="nk4-download.jar"/>
     <jar destfile="nk4-download.jar">
-      <zipfileset dir="build/class" prefix="" includes="**/downloader/**/*.class"/>
-      <zipfileset dir="src" prefix="src" includes="**/downloader/**/*" />
+      <zipfileset dir="build/download/class" prefix="" includes="**/*"/>
       <zipfileset dir="." includes="processRepository.xsl,processLogConfig.xsl,repository.xml"/>
     </jar>
   </target>
@@ -61,21 +61,21 @@
     </path>
     <taskdef name="downloadNetkernel"
              classpathref="path"
-             classname="uk.org.onegch.netkernel.antTools.downloader.DownloadNetKernelAntTask"/>
-    <downloadNetkernel path="build/download/"/>
+             classname="uk.org.onegch.netkernel.antTools.download.DownloadNetKernelAntTask"/>
+    <downloadNetkernel path="build/download-cache/"/>
   </target>
 
   <!-- nk4-testNG targets -->
   <target name="nk4-testNG.build" depends="download-modules">
     <path id="build.path">
       <path refid="base.path"/>
-      <fileset dir="build/download/lib/"/>
+      <fileset dir="build/download-cache/lib/"/>
     </path>
 
     <javac classpathref="build.path"
-           srcdir="src"
-           includes="**/testNG/**/*"
-           destdir="build/class"
+           srcdir="src/testNG/java"
+           includes="**/*.java"
+           destdir="build/testNG/class"
            debug="true"
            target="1.5"/>
   </target>
@@ -83,8 +83,7 @@
   <target name="nk4-testNG.jar" depends="nk4-testNG.build">
     <delete file="nk4-testNG.jar"/>
     <jar destfile="nk4-testNG.jar">
-      <zipfileset dir="build/class" prefix="" includes="**/testNG/**/*.class"/>
-      <zipfileset dir="src" prefix="src" includes="**/testNG/**/*" />
+      <zipfileset dir="build/testNG/class" prefix="" includes="**/*"/>
       <zipfileset dir="etc" prefix="etc">
         <include name="**/KernelLogConfig.xml"/>
         <include name="**/logLevels.xml"/>
@@ -112,10 +111,10 @@
       <include name="*.jar"/>
     </fileset>
     <pathelement path="test/build/"/>
-    <fileset dir="build/download/lib/">
+    <fileset dir="build/download-cache/lib/">
       <include name="*.jar"/>
     </fileset>
-    <fileset dir="build/download/modules/">
+    <fileset dir="build/download-cache/modules/">
       <include name="*.jar"/>
     </fileset>
     <fileset dir="lib">

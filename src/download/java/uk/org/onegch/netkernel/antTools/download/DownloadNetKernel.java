@@ -1,4 +1,4 @@
-package uk.org.onegch.netkernel.antTools.downloader;
+package uk.org.onegch.netkernel.antTools.download;
 
 import net.sf.saxon.s9api.*;
 import org.apache.http.HttpResponse;
