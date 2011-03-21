@@ -7,6 +7,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 
+import javax.xml.transform.stream.StreamSource;
 import java.io.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -15,8 +16,20 @@ import java.util.zip.ZipOutputStream;
 public class DownloadNetKernel {
   private static final int BUFFER = 2048;
 
-  public static void main(String[] args) throws Exception {
-    File packagesFolder = new File("build/packages/");
+  private File path;
+  private File repositoryConfig;
+
+  public DownloadNetKernel(File path, File repositoryConfig) {
+    this.path = path;
+    this.repositoryConfig = repositoryConfig;
+  }
+
+  public void download() throws Exception {
+    if (!path.exists()) {
+      path.mkdirs();
+    }
+
+    File packagesFolder = new File(path, "packages/");
     if (!packagesFolder.exists()) {
       packagesFolder.mkdirs();
     }
@@ -24,8 +37,13 @@ public class DownloadNetKernel {
     Processor p= new Processor(false);
 
     DocumentBuilder documentBuilder = p.newDocumentBuilder();
-    XdmNode repositoryDoc = documentBuilder.build(new File("repository.xml"));
-    XdmNode processRepositoryDoc = documentBuilder.build(new File("processRepository.xsl"));
+    XdmNode repositoryDoc;
+    if (repositoryConfig == null) {
+      repositoryDoc = documentBuilder.build(new StreamSource(DownloadNetKernelAntTask.class.getResourceAsStream("/repository.xml")));
+    } else {
+      repositoryDoc = documentBuilder.build(repositoryConfig);
+    }
+    XdmNode processRepositoryDoc = documentBuilder.build(new StreamSource(DownloadNetKernelAntTask.class.getResourceAsStream("/processRepository.xsl")));
 
     XdmDestination repositories = new XdmDestination();
 
@@ -76,7 +94,7 @@ public class DownloadNetKernel {
       System.err.println(" * expanding download");
       expandPackage(packageFile, expandedPackageFolder);
 
-      File targetFolder = new File("build/" + target + "/");
+      File targetFolder = new File(path, target + "/");
       if (!targetFolder.exists()) {
         targetFolder.mkdirs();
       }
@@ -142,7 +160,7 @@ public class DownloadNetKernel {
 
     DocumentBuilder documentBuilder = p.newDocumentBuilder();
     XdmNode logConfigDoc = documentBuilder.build(logConfigFile);
-    XdmNode processLogConfigDoc = documentBuilder.build(new File("processLogConfig.xsl"));
+    XdmNode processLogConfigDoc = documentBuilder.build(new StreamSource(DownloadNetKernelAntTask.class.getResourceAsStream("/processLogConfig.xsl")));
 
     Serializer destination = new Serializer();
     destination.setOutputFile(logConfigFile);
@@ -245,5 +263,9 @@ public class DownloadNetKernel {
 
     // The directory is now empty so delete it
     return dir.delete();
+  }
+
+  public static void main(String[] args) throws Exception {
+    new DownloadNetKernel(new File("build/packages/"), null).download();
   }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="testNG-nk4" default="package">
+<project name="NK4-Ant-Suite" default="package">
   <property name="version" value="0_3"/>
 
   <taskdef name="testng"
@@ -7,16 +7,9 @@
            classname="org.testng.TestNGAntTask" />
 
   <path id="base.path">
-    <pathelement path="build/class"/>
     <fileset dir="lib">
       <include name="*.jar"/>
     </fileset>
-  </path>
-
-  <path id="build.path">
-    <path refid="base.path"/>
-    <fileset dir="build/modules/"/>
-    <fileset dir="build/lib/"/>
   </path>
 
   <target name="init">
@@ -32,68 +25,99 @@
     <delete dir="test/build"/>
     <delete dir="test/report"/>
     <delete dir="test-output"/>
-    <delete file="testNG-nk4.jar"/>
+    <delete file="nk4-ant-suite.jar"/>
     <delete dir="${basedir}">
-      <include name="testNG-nk4*.zip"/>
+      <include name="NK4-Ant-Suite*.zip"/>
+      <include name="*.jar"/>
     </delete>
     <delete dir="nk-distribution"/>
-    <delete file="testNG-nk4.jar"/>
   </target>
 
-  <target name="download-modules" depends="init">
-    <delete dir="build/lib"/>
-    <delete dir="build/modules"/>
-
+  <!-- nk4-download targets -->
+  <target name="nk4-download.build" depends="init">
     <javac classpathref="base.path"
            srcdir="src"
+           includes="**/downloader/**/*"
            destdir="build/class"
            debug="true"
-           target="1.5"
-           includes="**/DownloadNetKernel.java"/>
-    <java classpathref="base.path"
-          classname="uk.org.onegch.netkernel.antTools.downloader.DownloadNetKernel"/>
-  </target>
-  
-  <target name="build" depends="init, download-modules">
-    <javac classpathref="build.path"
-           srcdir="src"
-           destdir="build/class"
-           debug="true"
-           target="1.5"
-           excludes="**/DownloadNetKernel.java"/>
+           target="1.5"/>
   </target>
 
-  <target name="jar" depends="build">
-    <delete file="testNG-nk4.jar"/>
-    <jar destfile="testNG-nk4.jar">
-      <zipfileset dir="build/class" prefix="" excludes="**/DownloadNetKernel.class"/>
-      <zipfileset dir="build/modules" prefix="modules" />
-      <zipfileset dir="src" prefix="src" excludes="build.xml" />
-      <zipfileset file="generate-suite.xsl" prefix=""/>
+  <target name="nk4-download.jar" depends="nk4-download.build">
+    <delete file="nk4-download.jar"/>
+    <jar destfile="nk4-download.jar">
+      <zipfileset dir="build/class" prefix="" includes="**/downloader/**/*.class"/>
+      <zipfileset dir="src" prefix="src" includes="**/downloader/**/*" />
+      <zipfileset dir="." includes="processRepository.xsl,processLogConfig.xsl,repository.xml"/>
+    </jar>
+  </target>
+
+  <target name="download-modules" depends="nk4-download.jar">
+    <path id="path">
+      <fileset file="nk4-download.jar"/>
+      <fileset dir="lib">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+    <taskdef name="downloadNetkernel"
+             classpathref="path"
+             classname="uk.org.onegch.netkernel.antTools.downloader.DownloadNetKernelAntTask"/>
+    <downloadNetkernel path="build/download/"/>
+  </target>
+
+  <!-- nk4-testNG targets -->
+  <target name="nk4-testNG.build" depends="download-modules">
+    <path id="build.path">
+      <path refid="base.path"/>
+      <fileset dir="build/download/lib/"/>
+    </path>
+
+    <javac classpathref="build.path"
+           srcdir="src"
+           includes="**/testNG/**/*"
+           destdir="build/class"
+           debug="true"
+           target="1.5"/>
+  </target>
+
+  <target name="nk4-testNG.jar" depends="nk4-testNG.build">
+    <delete file="nk4-testNG.jar"/>
+    <jar destfile="nk4-testNG.jar">
+      <zipfileset dir="build/class" prefix="" includes="**/testNG/**/*.class"/>
+      <zipfileset dir="src" prefix="src" includes="**/testNG/**/*" />
       <zipfileset dir="etc" prefix="etc">
         <include name="**/KernelLogConfig.xml"/>
         <include name="**/logLevels.xml"/>
       </zipfileset>
-    </jar>    
+      <zipfileset dir="." includes="generate-suite.xsl"/>
+    </jar>
   </target>
-  
+
+  <target name="jar" depends="nk4-download.jar,nk4-testNG.jar"/>
+
   <target name="package" depends="jar">
-    <delete file="testNG-nk4-${version}.zip"/>
-    <zip destfile="testNG-nk4-${version}.zip">
-      <zipfileset dir="test" prefix="testNG-nk4-${version}/test" />
-      <zipfileset file="testNG-nk4.jar" prefix="testNG-nk4-${version}/"/>
-      <zipfileset dir="lib" prefix="testNG-nk4-${version}/lib"/>
-      <zipfileset dir="etc" prefix="testNG-nk4-${version}/etc"/>
-      <zipfileset dir="build/lib" prefix="testNG-nk4-${version}/nk-distribution/lib"/>
-      <zipfileset dir="build/modules" prefix="testNG-nk4-${version}/nk-distribution/modules"/>
-      <zipfileset file="generate-suite.xsl" prefix="testNG-nk4-${version}/"/>
+    <delete file="NK4-Ant-Suite-${version}.zip"/>
+    <zip destfile="NK4-Ant-Suite-${version}.zip">
+      <zipfileset dir="test" prefix="NK4-Ant-Suite-${version}/test" />
+      <zipfileset file="nk4-ant-suite.jar" prefix="NK4-Ant-Suite-${version}/"/>
+      <zipfileset dir="lib" prefix="NK4-Ant-Suite-${version}/lib"/>
+      <zipfileset dir="etc" prefix="NK4-Ant-Suite-${version}/etc"/>
+      <zipfileset file="generate-suite.xsl" prefix="NK4-Ant-Suite-${version}/"/>
     </zip>
   </target>
 
+  <!-- test targets -->
   <path id="test.path">
-    <file file="testNG-nk4.jar"/>
+    <fileset dir="${basedir}">
+      <include name="*.jar"/>
+    </fileset>
     <pathelement path="test/build/"/>
-    <fileset file="build/lib/*.jar"/>
+    <fileset dir="build/download/lib/">
+      <include name="*.jar"/>
+    </fileset>
+    <fileset dir="build/download/modules/">
+      <include name="*.jar"/>
+    </fileset>
     <fileset dir="lib">
       <include name="http*.jar"/>
       <include name="commons*.jar"/>
