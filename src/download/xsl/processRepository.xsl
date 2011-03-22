@@ -8,7 +8,7 @@
   
   <xsl:template match="node() | @*" mode="#default">
     <xsl:copy>
-      <xsl:apply-templates select="* | node()" mode="#current"/>
+      <xsl:apply-templates select="@* | node()" mode="#current"/>
     </xsl:copy>
   </xsl:template>
   

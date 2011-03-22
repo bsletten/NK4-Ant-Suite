@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="2.0">
+	<meta>
+		<identity>
+			<uri/>
+			<version/>
+		</identity>
+		<info>
+			<name/>
+			<description/>
+		</info>
+	</meta>
+	<system/>
+	<rootspace>
+		<fileset>
+			<regex>res:/(module\.(xml|signature)|manifest.xml|modules/.*?|etc/system/.*?)</regex>
+		</fileset>
+	</rootspace>
+</module>

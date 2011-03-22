@@ -16,6 +16,7 @@
     <mkdir dir="build"/>
     <mkdir dir="build/download/class"/>
     <mkdir dir="build/testNG/class"/>
+    <mkdir dir="build/package/class"/>
     <mkdir dir="test/build"/>
     <mkdir dir="log"/>
   </target>
@@ -97,6 +98,55 @@
       <zipfileset dir="${basedir}" prefix="NK4-Ant-Suite-${version}/" includes="*.jar"/>
       <zipfileset dir="lib" prefix="NK4-Ant-Suite-${version}/lib"/>
     </zip>
+  </target>
+
+  <!-- nk4-package targets -->
+  <target name="nk4-package.build" depends="init">
+    <javac classpathref="base.path"
+           srcdir="src/package/java"
+           includes="**/*.java"
+           destdir="build/package/class"
+           debug="true"
+           target="1.5"/>
+  </target>
+
+  <target name="nk4-package.jar" depends="nk4-package.build">
+    <delete file="nk4-package.jar"/>
+    <jar destfile="nk4-package.jar">
+      <zipfileset dir="build/package/class" prefix="" includes="**/*"/>
+      <zipfileset dir="src/package/xsl" includes="*.xsl"/>
+      <zipfileset dir="src/package" includes="module.xml"/>
+    </jar>
+  </target>
+
+  <target name="test-package" depends="nk4-package.jar">
+    <path id="path">
+      <fileset file="nk4-package.jar"/>
+      <fileset dir="lib">
+        <include name="*.jar"/>
+      </fileset>
+    </path>
+
+    <taskdef name="nkmodule"
+             classpathref="path"
+             classname="uk.org.onegch.netkernel.antTools.packager.NetKernelModuleTask"/>
+    <taskdef name="nkpackage"
+             classpathref="path"
+             classname="uk.org.onegch.netkernel.antTools.packager.NetKernelPackageTask"/>
+
+    <nkmodule destdir="test/build/modules" modulefile="test/modules/urn.test.uk.org.onegch.netkernel.test/module.xml">
+      <zipfileset dir="test/modules/urn.test.uk.org.onegch.netkernel.test" prefix=""/>
+    </nkmodule>
+
+    <nkmodule destdir="test/build/modules" modulefile="test/modules/urn.test.uk.org.onegch.netkernel.selfTest/module.xml">
+      <zipfileset dir="test/modules/urn.test.uk.org.onegch.netkernel.selfTest" prefix=""/>
+    </nkmodule>
+    <nkpackage destfile="test/build/package.nkp.jar"
+               name="urn:test:uk:org:onegch:netkernel:test"
+               description="Tests for TestNG-NK"
+               version="0.3.0">
+      <modulesfileset dir="test/build/modules" prefix="modules" includes="*.jar"/>
+    </nkpackage>
   </target>
 
   <!-- test targets -->
