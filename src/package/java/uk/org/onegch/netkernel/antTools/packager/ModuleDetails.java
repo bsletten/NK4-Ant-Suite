@@ -100,12 +100,12 @@ public class ModuleDetails {
     rch.characters(uri.toCharArray(), 0, uri.length());
     rch.endElement("", "uri", "uri");
 
-    rch.startElement("", "version", "version", new AttributesImpl());
+    rch.startElement("", "version", "version",  new AttributesImpl());
     rch.characters(version.toCharArray(), 0, version.length());
     rch.endElement("", "version", "version");
 
     rch.startElement("", "runlevel", "runlevel", new AttributesImpl());
-    rch.characters("5".toCharArray(), 0, "5".length());
+    rch.characters("7".toCharArray(), 0, "7".length());
     rch.endElement("", "runlevel", "runlevel");
 
     rch.startElement("", "source", "source", new AttributesImpl());
@@ -114,7 +114,7 @@ public class ModuleDetails {
     rch.endElement("", "source", "source");
 
     rch.startElement("", "expand", "expand", new AttributesImpl());
-    rch.characters("false".toCharArray(), 0, "false".length());
+    rch.characters("true".toCharArray(), 0, "true".length());
     rch.endElement("", "expand", "expand");
 
     rch.endElement("", "module", "module");

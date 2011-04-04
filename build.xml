@@ -86,17 +86,18 @@
     <jar destfile="nk4-testNG.jar">
       <zipfileset dir="build/testNG/class" prefix=""/>
       <zipfileset dir="etc" prefix="etc"/>
-      <zipfileset dir="." includes="generate-suite.xsl"/>
+      <zipfileset dir="src/testNG/xsl" includes="generate-suite.xsl"/>
     </jar>
   </target>
 
-  <target name="jar" depends="nk4-download.jar,nk4-testNG.jar"/>
+  <target name="jar" depends="nk4-download.jar,nk4-testNG.jar,nk4-package.jar"/>
 
   <target name="package" depends="jar">
     <delete file="NK4-Ant-Suite-${version}.zip"/>
     <zip destfile="NK4-Ant-Suite-${version}.zip">
       <zipfileset dir="${basedir}" prefix="NK4-Ant-Suite-${version}/" includes="*.jar"/>
       <zipfileset dir="lib" prefix="NK4-Ant-Suite-${version}/lib"/>
+      <zipfileset dir="etc" prefix="NK4-Ant-Suite-${version}/etc"/>
     </zip>
   </target>
 
