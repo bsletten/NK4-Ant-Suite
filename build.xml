@@ -22,11 +22,17 @@
   -->
 
 <project name="NK4-Ant-Suite" default="package">
+  <property file="build.properties"/>
+
   <property name="version" value="0_3"/>
+  <property name="clover.path" value=""/>
 
   <taskdef name="testng"
            classpath="lib/testng-5.14.10.jar"
            classname="org.testng.TestNGAntTask" />
+
+  <taskdef resource="cloverlib.xml" classpath="${clover.path}/lib/clover.jar"/>
+  <clover-env/>
 
   <path id="base.path">
     <fileset dir="lib">
@@ -81,6 +87,7 @@
       <fileset dir="lib">
         <include name="*.jar"/>
       </fileset>
+      <pathelement location="${clover.path}/lib/clover.jar"/>
     </path>
     <taskdef name="downloadNetkernel"
              classpathref="path"
@@ -192,6 +199,7 @@
       <include name="jaxen*.jar"/>
       <include name="testng*.jar"/>
     </fileset>
+    <pathelement location="${clover.path}/lib/clover.jar"/>
   </path>
 
   <target name="compile-test" depends="init,jar,download-modules">

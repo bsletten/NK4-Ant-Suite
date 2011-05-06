@@ -12,3 +12,15 @@ testNG-nk4*
 .idea/workspace.xml
 test/build
 test/report
+
+/.clover
+/.cloverhistory
+/.idea
+/build.properties
+/nk4-download.jar
+/nk4-package.jar
+/nk4-testNG.jar
+clover/*
+log/*
+out/*
+test-output/*
