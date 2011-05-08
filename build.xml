@@ -25,14 +25,10 @@
   <property file="build.properties"/>
 
   <property name="version" value="0_3"/>
-  <property name="clover.path" value=""/>
-
+  
   <taskdef name="testng"
            classpath="lib/testng-5.14.10.jar"
            classname="org.testng.TestNGAntTask" />
-
-  <taskdef resource="cloverlib.xml" classpath="${clover.path}/lib/clover.jar"/>
-  <clover-env/>
 
   <path id="base.path">
     <fileset dir="lib">
