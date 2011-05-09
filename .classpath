@@ -3,7 +3,7 @@
 	<classpathentry excluding="etc/" kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/urn.org.netkernel.xml.saxon"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/urn.uk.org.onegch.netkernel.layer2"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/urn.org.netkernelroc.mod.layer2"/>
 	<classpathentry kind="lib" path="lib/testng-5.11-jdk15.jar" sourcepath="/Users/chrisc/Downloads/testng-5.11/src/main"/>
 	<classpathentry kind="lib" path="lib/httpclient-4.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/httpcore-4.0.1.jar"/>

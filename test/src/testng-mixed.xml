@@ -23,25 +23,25 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="NetKernel Tests" verbose="0">
-  <test name="urn:uk:org:onegch:netkernel:test:mixedTest / successTest">
-    <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:mixedTest"/>
+  <test name="urn:test:org:netkernelroc:antTools:testNG:test:mixedTest / successTest">
+    <parameter name="identifier" value="urn:test:org:netkernelroc:antTools:testNG:test:mixedTest"/>
     <parameter name="name" value="successTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
+      <class name="org.netkernelroc.antTools.testNG.TestRunner"/>
     </classes>
   </test>
-  <test name="urn:uk:org:onegch:netkernel:test:mixedTest / failureTest">
-    <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:mixedTest"/>
+  <test name="urn:test:org:netkernelroc:antTools:testNG:test:mixedTest / failureTest">
+    <parameter name="identifier" value="urn:test:org:netkernelroc:antTools:testNG:test:mixedTest"/>
     <parameter name="name" value="failureTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
+      <class name="org.netkernelroc.antTools.testNG.TestRunner"/>
     </classes>
   </test>
-  <test name="urn:uk:org:onegch:netkernel:test:mixedTest / exceptionTest">
-    <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:mixedTest"/>
+  <test name="urn:test:org:netkernelroc:antTools:testNG:test:mixedTest / exceptionTest">
+    <parameter name="identifier" value="urn:test:org:netkernelroc:antTools:testNG:test:mixedTest"/>
     <parameter name="name" value="exceptionTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
+      <class name="org.netkernelroc.antTools.testNG.TestRunner"/>
     </classes>
   </test>
 </suite>

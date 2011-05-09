@@ -23,8 +23,8 @@
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:onegch="http://www.onegch.org.uk"
-                exclude-result-prefixes="xs onegch"
+                xmlns:netkernelroc="http://netkernelroc.org"
+                exclude-result-prefixes="xs netkernelroc"
                 version="2.0">
   <xsl:output indent="yes"/>
   
@@ -70,9 +70,9 @@
     <xsl:copy>
       <xsl:apply-templates select="@*"/>
       
-      <xsl:variable name="base-version" select="onegch:get-version-from-respository($base-repository, text())"></xsl:variable>
-      <xsl:variable name="update-version" select="onegch:get-version-from-respository($update-repository, text())"></xsl:variable>
-      <xsl:variable name="security-version" select="onegch:get-version-from-respository($security-repository, text())"></xsl:variable>
+      <xsl:variable name="base-version" select="netkernelroc:get-version-from-respository($base-repository, text())"></xsl:variable>
+      <xsl:variable name="update-version" select="netkernelroc:get-version-from-respository($update-repository, text())"></xsl:variable>
+      <xsl:variable name="security-version" select="netkernelroc:get-version-from-respository($security-repository, text())"></xsl:variable>
       
       <xsl:choose>
         <xsl:when test="count($base-version/*)=0 and count($update-version/*)=0 and count($security-version//package/*)=0">
@@ -81,19 +81,19 @@
         <xsl:when test="count($update-version/*)=0 and count($security-version/*)=0">
           <xsl:message> * Package <xsl:value-of select="concat(text(), ' ', $base-version/version/string)"/> found in base repository</xsl:message>
           <type>base</type>
-          <url><xsl:value-of select="onegch:calculate-filename($base-version, ../../config)"/></url>
+          <url><xsl:value-of select="netkernelroc:calculate-filename($base-version, ../../config)"/></url>
           <xsl:copy-of select="$base-version/*"/>
         </xsl:when>
         <xsl:when test="count($update-version/*)>0 and count($security-version/*)=0">
           <xsl:message> * Package <xsl:value-of select="concat(text(), ' ', $update-version/version/string)"/> found in update repository</xsl:message>
           <type>update</type>
-          <url><xsl:value-of select="onegch:calculate-filename($update-version, ../../config)"/></url>
+          <url><xsl:value-of select="netkernelroc:calculate-filename($update-version, ../../config)"/></url>
           <xsl:copy-of select="$update-version/*"/>
         </xsl:when>
         <xsl:when test="count($update-version/*)=0 and count($security-version/*)>0">
           <xsl:message> * Package <xsl:value-of select="concat(text(), ' ', $security-version/version/string)"/> found in security repository</xsl:message>
           <type>security</type>
-          <url><xsl:value-of select="onegch:calculate-filename($security-version, ../../config)"/></url>
+          <url><xsl:value-of select="netkernelroc:calculate-filename($security-version, ../../config)"/></url>
           <xsl:copy-of select="$security-version/*"/>
         </xsl:when>
         <xsl:otherwise>
@@ -103,7 +103,7 @@
     </xsl:copy>
   </xsl:template>
   
-  <xsl:function name="onegch:get-version-from-respository" as="node()">
+  <xsl:function name="netkernelroc:get-version-from-respository" as="node()">
     <xsl:param name="repository"/>
     <xsl:param name="packageName"/>
     
@@ -124,7 +124,7 @@
     </package>
   </xsl:function>
   
-  <xsl:function name="onegch:calculate-filename" as="xs:string">
+  <xsl:function name="netkernelroc:calculate-filename" as="xs:string">
     <xsl:param name="package" as="node()"/>
     <xsl:param name="config" as="node()"/>
     

@@ -87,7 +87,7 @@
     </path>
     <taskdef name="downloadNetkernel"
              classpathref="path"
-             classname="uk.org.onegch.netkernel.antTools.download.DownloadNetKernelAntTask"/>
+             classname="org.netkernelroc.antTools.download.DownloadNetKernelAntTask"/>
     <downloadNetkernel path="build/download-cache/"/>
   </target>
 
@@ -156,20 +156,20 @@
 
     <taskdef name="nkmodule"
              classpathref="path"
-             classname="uk.org.onegch.netkernel.antTools.packager.NetKernelModuleTask"/>
+             classname="org.netkernelroc.antTools.packager.NetKernelModuleTask"/>
     <taskdef name="nkpackage"
              classpathref="path"
-             classname="uk.org.onegch.netkernel.antTools.packager.NetKernelPackageTask"/>
+             classname="org.netkernelroc.antTools.packager.NetKernelPackageTask"/>
 
-    <nkmodule destdir="test/build/modules" modulefile="test/modules/urn.test.uk.org.onegch.netkernel.test/module.xml">
-      <zipfileset dir="test/modules/urn.test.uk.org.onegch.netkernel.test" prefix=""/>
+    <nkmodule destdir="test/build/modules" modulefile="test/modules/urn.test.org.netkernelroc.antTools.testNG.testNG.test/module.xml">
+      <zipfileset dir="test/modules/urn.test.org.netkernelroc.antTools.testNG.testNG.test" prefix=""/>
     </nkmodule>
 
-    <nkmodule destdir="test/build/modules" modulefile="test/modules/urn.test.uk.org.onegch.netkernel.selfTest/module.xml">
-      <zipfileset dir="test/modules/urn.test.uk.org.onegch.netkernel.selfTest" prefix=""/>
+    <nkmodule destdir="test/build/modules" modulefile="test/modules/urn.test.org.netkernelroc.antTools.testNG.testNG.selfTest/module.xml">
+      <zipfileset dir="test/modules/urn.test.org.netkernelroc.antTools.testNG.testNG.selfTest" prefix=""/>
     </nkmodule>
     <nkpackage destfile="test/build/package.nkp.jar"
-               name="urn:test:uk:org:onegch:netkernel:test"
+               name="urn:test:uk:org:netkernelroc:netkernel:test"
                description="Tests for TestNG-NK"
                version="0.3.0">
       <modulesfileset dir="test/build/modules" prefix="modules" includes="*.jar"/>
@@ -209,7 +209,7 @@
   <target name="test" depends="compile-test, jar">
     <delete dir="test/log"/>
     <mkdir dir="test/log"/>
-    <testng classpathref="test.path" outputdir="test/report">
+    <testng classpathref="test.path" outputdir="test/report" haltonfailure="true">
       <classfileset dir="test/build/" includes="**/*.class" />
     </testng>
   </target>

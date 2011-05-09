@@ -23,11 +23,11 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="NetKernel Tests" verbose="0">
-  <test name="urn:uk:org:onegch:netkernel:test:failureTest / failureTest">
-    <parameter name="identifier" value="urn:uk:org:onegch:netkernel:test:failureTest"/>
+  <test name="urn:test:org:netkernelroc:antTools:testNG:test:failureTest / failureTest">
+    <parameter name="identifier" value="urn:test:org:netkernelroc:antTools:testNG:test:failureTest"/>
     <parameter name="name" value="failureTest"/>
     <classes>
-      <class name="uk.org.onegch.netkernel.antTools.testNG.TestRunner"/>
+      <class name="org.netkernelroc.antTools.testNG.TestRunner"/>
     </classes>
   </test>
 </suite>
