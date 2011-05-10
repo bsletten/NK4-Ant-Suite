@@ -24,3 +24,5 @@ clover/*
 log/*
 out/*
 test-output/*
+NK4-Ant-Suite-*.zip
+/etc/boo.xml
