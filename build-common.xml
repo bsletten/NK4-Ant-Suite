@@ -126,7 +126,7 @@
     <sequential>
       <xslt classpathref="nk4.anttools.path"
             in="@{srcmodulefile}"
-            out="@{destmodulefile"
+            out="@{destmodulefile}"
             force="true">
         <sysproperty key="javax.xml.transform.TransformerFactory"
                      value="net.sf.saxon.TransformerFactoryImpl"/>
