@@ -1,0 +1,141 @@
+<!--
+  ~ Copyright (c) 2010-2011 Christopher Cormack
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+<project name="nk4-ant-common">
+  <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+    <classpath>
+      <pathelement location="${nk4-ant-suite}/lib/ant-contrib-1.0b3.jar" />
+    </classpath>
+  </taskdef>
+
+  <property name="repository.address" value="127.0.0.1"/>
+  <property name="repository.port" value="8039"/>
+  <property name="push.repository" value="devel"/>
+
+  <macrodef name="publish-package">
+    <attribute name="package.name"/>
+    <attribute name="package.version"/>
+    <attribute name="package.location"/>
+
+    <sequential>
+      <sshexec host="${repository.address}"
+               port="${repository.port}"
+               username="${user.name}"
+               keyfile="${user.home}/.ssh/id_rsa"
+               trust="true"
+               command="repositoryServer:sshd:version:exists+package@data:text/plain,@{package.name}+version@data:text/plain,@{package.version}"
+               outputproperty="@{package.name}-is-published-unclean"/>
+
+      <propertyregex property="@{package.name}-is-published"
+                     input="${@{package.name}-is-published-unclean}"
+                     regexp="([a-z0-9_]*).*"
+                     select="\1"/>
+
+      <if>
+        <equals arg1="${@{package.name}-is-published}" arg2="true" />
+        <then>
+          <echo>@{package.name} @{package.version} is already published on ${repository.address}</echo>
+        </then>
+        <elseif>
+          <equals arg1="${repository.publish}" arg2="true"/>
+          <then>
+            <echo>Publishing @{package.name} @{package.version} to ${repository.address}</echo>
+            <scp port="${repository.port}"
+            keyfile="${user.home}/.ssh/id_rsa"
+            trust="true"
+            file="@{package.location}"
+            todir="${user.name}@${repository.address}:repositoryServer:sshd:version:upload+package@data:text/plain,@{package.name}+version@data:text/plain,@{package.version}"/>
+          </then>
+        </elseif>
+        <else>
+          <echo>@{package.name} @{package.version} is not published on ${repository.address}, skipping as $${repository.publish} is not set to 'true'</echo>
+        </else>
+      </if>
+      </sequential>
+  </macrodef>
+  
+  <macrodef name="push-package">
+    <attribute name="package.name"/>
+    <attribute name="package.version"/>
+
+    <sequential>
+      <sshexec host="${repository.address}"
+               port="${repository.port}"
+               username="${user.name}"
+               keyfile="${user.home}/.ssh/id_rsa"
+               trust="true"
+               command="repositoryServer:sshd:version:publish:exists+package@data:text/plain,@{package.name}+version@data:text/plain,@{package.version}+repository@data:text/plain,${push.repository}"
+               outputproperty="@{package.name}-is-pushed-unclean"/>
+
+      <propertyregex property="@{package.name}-is-pushed"
+                     input="${@{package.name}-is-pushed-unclean}"
+                     regexp="([a-z0-9_]*).*"
+                     select="\1"/>
+
+      <if>
+        <equals arg1="${@{package.name}-is-pushed}" arg2="true" />
+        <then>
+          <echo>@{package.name} @{package.version} has already been pushed to ${push.repository} on ${repository.address}</echo>
+        </then>
+        <elseif>
+          <equals arg1="${@{package.name}-is-pushed}" arg2="version_does_not_exist"/>
+          <then>
+            <echo>@{package.name} @{package.version} cannot be pushed to ${push.repository} on ${repository.address} as it has not been published</echo>
+          </then>
+        </elseif>
+        <elseif>
+          <equals arg1="${repository.push}" arg2="true"/>
+          <then>
+            <echo>Pushing @{package.name} @{package.version} to ${push.repository} on ${repository.address}</echo>
+            <sshexec host="${repository.address}"
+            port="${repository.port}"
+            username="${user.name}"
+            keyfile="${user.home}/.ssh/id_rsa"
+            trust="true"
+            command="repositoryServer:sshd:version:publish+package@data:text/plain,@{package.name}+version@data:text/plain,@{package.version}+repository@data:text/plain,${push.repository}"/>
+          </then>
+        </elseif>
+        <else>
+          <echo>@{package.name} @{package.version} has not been pushed to ${push.repository} on ${repository.address}, skipping as $${repository.push} is not set to 'true'</echo>
+        </else>
+      </if>
+    </sequential>
+  </macrodef>
+
+  <macrodef name="set-version-number">
+    <attribute name="srcmodulefile"/>
+    <attribute name="destmodulefile"/>
+    <sequential>
+      <xslt classpathref="nk4.anttools.path"
+            in="@{srcmodulefile}"
+            out="@{destmodulefile"
+            force="true">
+        <sysproperty key="javax.xml.transform.TransformerFactory"
+                     value="net.sf.saxon.TransformerFactoryImpl"/>
+        <style>
+          <javaresource classpathref="nk4.anttools.path" name="set-module-version.xsl"/>
+        </style>
+        <param name="version" expression="${nkrepo.version}"/>
+      </xslt>
+    </sequential>
+  </macrodef>
+
+</project>

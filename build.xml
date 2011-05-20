@@ -124,6 +124,7 @@
       <zipfileset dir="lib" prefix="NK4-Ant-Suite-${version}/lib"/>
       <zipfileset dir="etc" prefix="NK4-Ant-Suite-${version}/etc"/>
       <zipfileset dir="NOTICES" prefix="NK4-Ant-Suite-${version}/NOTICES"/>
+      <zipfileset dir="." includes="build-common.xml" prefix="NK4-Ant-Suite-${version}"/>
     </zip>
   </target>
 
